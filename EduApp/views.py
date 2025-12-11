@@ -8,5 +8,8 @@ def main(request):
 def exam_subjects(request):
     return render(request, "exam_subjects_page.html")
 
+def account(request):
+    return render(request, "account_page.html")
+
 
 

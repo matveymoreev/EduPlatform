@@ -1,10 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ОГЭ 2025 - Подготовка</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body { font-family: 'Segoe UI', system-ui; background: #f8f9fa; }
+        .subject-card { transition: all 0.3s; border-radius: 12px; }
+        .subject-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .math-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .russian-card { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .science-card { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .history-card { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .literature-card { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .popular-card { border: 2px solid #ffc107; position: relative; }
+        .popular-card::before { content: "Популярный"; position: absolute; top: 10px; right: -30px;
+            background: #ffc107; color: #000; padding: 3px 35px; font-size: 12px; font-weight: bold; transform: rotate(45deg); }
+        .nav-tabs .nav-link.active { border-bottom: 3px solid #0d6efd; font-weight: bold; }
+        .geography-card { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); }
+    </style>
 </head>
 <body>
+    <!-- Навигация как на главной -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-primary" href="#">EduPlatform</a>
 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Курсы</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">ОГЭ 2025</a></li>
+                            <li><a class="dropdown-item" href="#">ЕГЭ 2025</a></li>
+                            <li><a class="dropdown-item" href="#">Учебники</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Все курсы</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- ПОИСК И АККАУНТ КАК НА ГЛАВНОЙ -->
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Поиск курсов...">
+                    <button class="btn btn-outline-primary" type="submit">Найти</button>
+                </form>
+
+                <button class="btn btn-outline-secondary">Аккаунт</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container py-4">
+        <!-- Заголовок -->
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-2">ОГЭ 2025 — Полная подготовка</h1>
+                <p class="lead text-muted mb-3">Выберите предмет для подготовки к Основному государственному экзамену</p>
+                <div class="alert alert-info d-flex align-items-center">
+                    <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                    <div>Экзамен состоит из 4 обязательных предметов: математика, русский язык + 2 предмета по выбору</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладки -->
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#all">Все предметы</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#popular">Популярные</a></li>
+        </ul>
+
+        <!-- Все предметы -->
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="all">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                    <!-- Математика -->
+                    <div class="col"><div class="card subject-card shadow math-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">Обязательный</span><i class="bi bi-calculator fs-4"></i>
+                        </div><h4 class="fw-bold">Математика</h4><p class="opacity-75 mb-4">Алгебра и геометрия</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 120</small><br><small>Вопросы: 850+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Русский -->
+                    <div class="col"><div class="card subject-card shadow russian-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">Обязательный</span><i class="bi bi-type fs-4"></i>
+                        </div><h4 class="fw-bold">Русский язык</h4><p class="opacity-75 mb-4">Грамматика, сочинение</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 95</small><br><small>Вопросы: 720+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Информатика -->
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-laptop fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Информатика</h4><p class="text-muted mb-4">Алгоритмы, программирование</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 80</small><br><small>Вопросы: 650+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+
+                    <!-- Физика -->
+                    <div class="col"><div class="card subject-card shadow science-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-lightning-charge fs-4"></i>
+                        </div><h4 class="fw-bold">Физика</h4><p class="opacity-75 mb-4">Механика, термодинамика</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 75</small><br><small>Вопросы: 600+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Биология -->
+                    <div class="col"><div class="card subject-card shadow science-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-flower2 fs-4"></i>
+                        </div><h4 class="fw-bold">Биология</h4><p class="opacity-75 mb-4">Ботаника, зоология</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 70</small><br><small>Вопросы: 580+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Химия -->
+                    <div class="col"><div class="card subject-card shadow science-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-droplet-half fs-4"></i>
+                        </div><h4 class="fw-bold">Химия</h4><p class="opacity-75 mb-4">Органическая химия</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 65</small><br><small>Вопросы: 550+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- История -->
+                    <div class="col"><div class="card subject-card shadow history-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-clock-history fs-4"></i>
+                        </div><h4 class="fw-bold">История</h4><p class="opacity-75 mb-4">Россия и мир</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 85</small><br><small>Вопросы: 700+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Обществознание -->
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-people fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Обществознание</h4><p class="text-muted mb-4">Право, экономика</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 90</small><br><small>Вопросы: 750+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+
+                    <!-- Литература -->
+                    <div class="col"><div class="card subject-card shadow literature-card text-white">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-book-half fs-4"></i>
+                        </div><h4 class="fw-bold">Литература</h4><p class="opacity-75 mb-4">Анализ произведений</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 60</small><br><small>Вопросы: 500+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+
+                    <!-- Английский -->
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-translate fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Английский язык</h4><p class="text-muted mb-4">Грамматика, аудирование</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 100</small><br><small>Вопросы: 800+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+
+                    <!-- География -->
+                    <div class="col"><div class="card subject-card shadow geography-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-light text-dark">По выбору</span><i class="bi bi-globe-americas fs-4"></i>
+                        </div><h4 class="fw-bold">География</h4><p class="text-muted mb-4">Физическая география</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 70</small><br><small>Вопросы: 580+</small></div>
+                        <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+                </div>
+            </div>
+
+            <!-- Популярные -->
+            <div class="tab-pane fade" id="popular">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-laptop fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Информатика</h4><p class="text-muted mb-4">Алгоритмы, программирование</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 80</small><br><small>Вопросы: 650+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-people fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Обществознание</h4><p class="text-muted mb-4">Право, экономика</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 90</small><br><small>Вопросы: 750+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+
+                    <div class="col"><div class="card subject-card shadow popular-card">
+                        <div class="card-body"><div class="d-flex justify-content-between mb-3">
+                            <span class="badge bg-info">Популярный</span><i class="bi bi-translate fs-4 text-info"></i>
+                        </div><h4 class="fw-bold">Английский язык</h4><p class="text-muted mb-4">Грамматика, аудирование</p>
+                        <div class="d-flex justify-content-between"><div><small>Тесты: 100</small><br><small>Вопросы: 800+</small></div>
+                        <button class="btn btn-info btn-sm text-white">Начать</button></div></div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Статистика -->
+        <div class="row mt-5">
+            <div class="col-12"><div class="card shadow">
+                <div class="card-header bg-white"><h5 class="mb-0"><i class="bi bi-bar-chart-line me-2"></i>Популярность предметов ОГЭ 2024</h5></div>
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-7">
+                            <div class="mb-3"><div class="d-flex justify-content-between mb-1">
+                                <span>Обществознание</span><span class="fw-bold">42%</span></div>
+                                <div class="progress" style="height: 10px;"><div class="progress-bar bg-info" style="width: 42%"></div></div></div>
+                            <div class="mb-3"><div class="d-flex justify-content-between mb-1">
+                                <span>География</span><span class="fw-bold">38%</span></div>
+                                <div class="progress" style="height: 10px;"><div class="progress-bar bg-success" style="width: 38%"></div></div></div>
+                            <div class="mb-3"><div class="d-flex justify-content-between mb-1">
+                                <span>Информатика</span><span class="fw-bold">35%</span></div>
+                                <div class="progress" style="height: 10px;"><div class="progress-bar bg-primary" style="width: 35%"></div></div></div>
+                        </div>
+                        <div class="col-md-5"><div class="alert alert-light">
+                            <h6><i class="bi bi-lightbulb me-2"></i>Совет по выбору</h6>
+                            <p class="small mb-0">Выбирайте предметы, которые нужны для поступления в колледж или профильный 10 класс</p>
+                        </div></div>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <h5 class="mb-2">EduPlatform</h5>
+                    <p class="mb-0 text-muted">Образовательная платформа для подготовки к экзаменам</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-2">
+                        <a href="#" class="text-white text-decoration-none me-3">Политика конфиденциальности</a>
+                        <a href="#" class="text-white text-decoration-none">Условия использования</a>
+                    </p>
+                    <p class="mb-0 text-muted">EduPlatform © 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('button')) {
+                    const subject = this.querySelector('.fw-bold').textContent;
+                    alert(`Вы выбрали предмет: ${subject}\nНачинаем подготовку...`);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
