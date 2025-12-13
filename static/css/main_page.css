@@ -1,0 +1,89 @@
+.custom-link{
+    text-decoration: none;
+}
+
+.custom-link:link {
+    color: black;
+}
+
+.custom-link:visited {
+    color: black;
+}
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --accent-color: #0dcaf0;
+    --light-bg: #f8f9fa;
+    --dark-bg: #212529;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color) !important;
+}
+
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.benefits-section {
+    background-color: var(--light-bg);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.benefit-item {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+}
+
+.btn-info {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+}
+
+.btn-info:hover {
+    background-color: #0bb5d9;
+    border-color: #0bb5d9;
+}
+
+footer {
+    margin-top: auto;
+    background-color: var(--dark-bg);
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        margin-bottom: 1.5rem;
+    }
+}

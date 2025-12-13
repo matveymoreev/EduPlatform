@@ -21,7 +21,7 @@ from EduApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.main),
-    path("exam_subjects/", views.exam_subjects),
+    path("OGE_subjects/", views.exam_subjects),
     path("account/", views.account),
 
 ]

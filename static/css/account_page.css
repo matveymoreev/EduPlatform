@@ -1,0 +1,18 @@
+
+body { font-family: 'Segoe UI', system-ui; background: #f8f9fa; }
+.profile-card { border: none; border-radius: 15px; }
+.profile-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 120px; position: relative; }
+.form-control:focus { border-color: #667eea; box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25); }
+.nav-tabs .nav-link { color: #6c757d; border: none; padding: 12px 20px; font-weight: 500; }
+.nav-tabs .nav-link.active { color: #667eea; border-bottom: 3px solid #667eea; background: transparent; }
+.history-item { border-radius: 8px; border-left: 4px solid #667eea; }
+.badge-purple { background-color: #667eea; }
+.stats-card { border-radius: 10px; }
+
+/* Анимация обновления */
+.updating { animation: pulse 0.5s ease-in-out; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
