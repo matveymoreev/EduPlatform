@@ -1,269 +1,254 @@
-<!-- подключение статических файлов -->
-{% load static %}
+{% extends "base/base.html" %}
+{% block contentMain %}
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-3 text-primary" href="#">EduPlatform</a>
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Профиль пользователя - EduPlatform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link href="{% static 'css/main_page.css' %}" rel="stylesheet">
-    <link href="{% static 'ccs/exam_subjects_page.css' %}" rel="stylesheet">
-    <link href="{% static 'ccs/account_page.css' %}" rel="stylesheet">
-</head>
-<body>
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-3 text-primary" href="#">EduPlatform</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Курсы</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">ОГЭ 2025</a></li>
+                        <li><a class="dropdown-item" href="#">ЕГЭ 2025</a></li>
+                        <li><a class="dropdown-item" href="#">Учебники</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Все курсы</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Курсы</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">ОГЭ 2025</a></li>
-                            <li><a class="dropdown-item" href="#">ЕГЭ 2025</a></li>
-                            <li><a class="dropdown-item" href="#">Учебники</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Все курсы</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <form class="d-flex me-3">
+                <input class="form-control me-2" type="search" placeholder="Поиск курсов...">
+                <button class="btn btn-outline-primary" type="submit">Найти</button>
+            </form>
 
-                <form class="d-flex me-3">
-                    <input class="form-control me-2" type="search" placeholder="Поиск курсов...">
-                    <button class="btn btn-outline-primary" type="submit">Найти</button>
-                </form>
+            <button class="btn btn-outline-secondary">Аккаунт</button>
+        </div>
+    </div>
+</nav>
 
-                <button class="btn btn-outline-secondary">Аккаунт</button>
+<!-- Основной контент -->
+<div class="container py-4">
+    <div class="row">
+        <!-- Левая колонка - Профиль -->
+        <div class="col-lg-4 mb-4">
+            <div class="card profile-card shadow">
+                <div class="profile-header"></div>
+                <div class="card-body text-center pt-4">
+                    <!-- Данные профиля, которые обновляются -->
+                    <h4 class="mt-3 mb-1 fw-bold" id="userFullName">Введите имя и фамилию</h4>
+                    <p class="text-muted mb-3" id="userStatus">Статус не указан</p>
+
+                    <!-- Статистика -->
+                    <div class="row text-center mt-4">
+                        <div class="col-4">
+                            <h5 class="fw-bold" id="coursesCount">0</h5>
+                            <small class="text-muted">Курсы</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="fw-bold" id="hoursCount">0</h5>
+                            <small class="text-muted">Часов</small>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="fw-bold" id="progressPercent">0%</h5>
+                            <small class="text-muted">Прогресс</small>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button class="btn btn-primary w-100 mb-2"><i class="bi bi-pencil-square me-2"></i>Редактировать профиль</button>
+                        <button class="btn btn-outline-secondary w-100"><i class="bi bi-box-arrow-right me-2"></i>Выйти</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Активность сегодня -->
+            <div class="card shadow stats-card mt-4">
+                <div class="card-body">
+                    <h6 class="fw-bold"><i class="bi bi-calendar-check me-2"></i>Активность сегодня</h6>
+                    <div class="progress mb-2" style="height: 8px;">
+                        <div class="progress-bar bg-success" id="activityBar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted" id="todayActivity">Активность не указана</small>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <!-- Основной контент -->
-    <div class="container py-4">
-        <div class="row">
-            <!-- Левая колонка - Профиль -->
-            <div class="col-lg-4 mb-4">
-                <div class="card profile-card shadow">
-                    <div class="profile-header"></div>
-                    <div class="card-body text-center pt-4">
-                        <!-- Данные профиля, которые обновляются -->
-                        <h4 class="mt-3 mb-1 fw-bold" id="userFullName">Введите имя и фамилию</h4>
-                        <p class="text-muted mb-3" id="userStatus">Статус не указан</p>
+        <!-- Правая колонка - Информация -->
+        <div class="col-lg-8">
+            <!-- Вкладки -->
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item"><a class="nav-link active" href="#personal" data-bs-toggle="tab">Личные данные</a></li>
+                <li class="nav-item"><a class="nav-link" href="#security" data-bs-toggle="tab">Безопасность</a></li>
+                <li class="nav-item"><a class="nav-link" href="#history" data-bs-toggle="tab">История поиска</a></li>
+            </ul>
 
-                        <!-- Статистика -->
-                        <div class="row text-center mt-4">
-                            <div class="col-4">
-                                <h5 class="fw-bold" id="coursesCount">0</h5>
-                                <small class="text-muted">Курсы</small>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="fw-bold" id="hoursCount">0</h5>
-                                <small class="text-muted">Часов</small>
-                            </div>
-                            <div class="col-4">
-                                <h5 class="fw-bold" id="progressPercent">0%</h5>
-                                <small class="text-muted">Прогресс</small>
-                            </div>
-                        </div>
+            <div class="tab-content">
+                <!-- Личные данные -->
+                <div class="tab-pane fade show active" id="personal">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-4"><i class="bi bi-person-lines-fill me-2"></i>Личная информация</h5>
 
-                        <div class="mt-4">
-                            <button class="btn btn-primary w-100 mb-2"><i class="bi bi-pencil-square me-2"></i>Редактировать профиль</button>
-                            <button class="btn btn-outline-secondary w-100"><i class="bi bi-box-arrow-right me-2"></i>Выйти</button>
-                        </div>
-                    </div>
-                </div>
+                            <form id="profileForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Имя</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="Введите имя">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">Фамилия</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию">
+                                    </div>
+                                </div>
 
-                <!-- Активность сегодня -->
-                <div class="card shadow stats-card mt-4">
-                    <div class="card-body">
-                        <h6 class="fw-bold"><i class="bi bi-calendar-check me-2"></i>Активность сегодня</h6>
-                        <div class="progress mb-2" style="height: 8px;">
-                            <div class="progress-bar bg-success" id="activityBar" style="width: 0%"></div>
-                        </div>
-                        <small class="text-muted" id="todayActivity">Активность не указана</small>
-                    </div>
-                </div>
-            </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Электронная почта</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                        <input type="email" class="form-control" id="userEmail" placeholder="email@example.com">
+                                    </div>
+                                    <div class="form-text">Мы отправим подтверждение на этот адрес</div>
+                                </div>
 
-            <!-- Правая колонка - Информация -->
-            <div class="col-lg-8">
-                <!-- Вкладки -->
-                <ul class="nav nav-tabs mb-4">
-                    <li class="nav-item"><a class="nav-link active" href="#personal" data-bs-toggle="tab">Личные данные</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#security" data-bs-toggle="tab">Безопасность</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#history" data-bs-toggle="tab">История поиска</a></li>
-                </ul>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Дата рождения</label>
+                                    <input type="date" class="form-control" id="birthDate">
+                                </div>
 
-                <div class="tab-content">
-                    <!-- Личные данные -->
-                    <div class="tab-pane fade show active" id="personal">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold mb-4"><i class="bi bi-person-lines-fill me-2"></i>Личная информация</h5>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Класс обучения</label>
+                                    <select class="form-select" id="userClass">
+                                        <option value="" selected disabled>Выберите класс</option>
+                                        <option value="9">9 класс</option>
+                                        <option value="10">10 класс</option>
+                                        <option value="11">11 класс</option>
+                                    </select>
+                                </div>
 
-                                <form id="profileForm">
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-semibold">Имя</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="Введите имя">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">О себе</label>
+                                    <textarea class="form-control" rows="3" id="aboutUser" placeholder="Расскажите о себе..."></textarea>
+                                </div>
+
+                                <!-- Статистика обучения -->
+                                <div class="card border-light mb-4">
+                                    <div class="card-body">
+                                        <h6 class="fw-semibold mb-3"><i class="bi bi-graph-up me-2"></i>Статистика обучения</h6>
+                                        <div class="row">
+                                            <div class="col-md-4 mb-3">
+                                                <label class="form-label">Количество курсов</label>
+                                                <input type="number" class="form-control" id="inputCourses" min="0" max="100" value="0">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label class="form-label">Часов обучения</label>
+                                                <input type="number" class="form-control" id="inputHours" min="0" max="1000" value="0">
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label class="form-label">Прогресс (%)</label>
+                                                <input type="number" class="form-control" id="inputProgress" min="0" max="100" value="0">
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label fw-semibold">Фамилия</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию">
+                                        <div class="mb-3">
+                                            <label class="form-label">Активность сегодня (минуты)</label>
+                                            <input type="number" class="form-control" id="inputActivity" min="0" max="480" value="0">
+                                            <div class="form-text">Введите время обучения в минутах</div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Электронная почта</label>
+                                <button type="button" id="saveButton" class="btn btn-primary"><i class="bi bi-check-circle me-2"></i>Сохранить изменения</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Безопасность -->
+                <div class="tab-pane fade" id="security">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-4"><i class="bi bi-shield-lock me-2"></i>Настройки безопасности</h5>
+
+                            <div class="mb-4">
+                                <h6 class="fw-semibold">Изменение пароля</h6>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Текущий пароль</label>
                                         <div class="input-group">
-                                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                            <input type="email" class="form-control" id="userEmail" placeholder="email@example.com">
-                                        </div>
-                                        <div class="form-text">Мы отправим подтверждение на этот адрес</div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Дата рождения</label>
-                                        <input type="date" class="form-control" id="birthDate">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Класс обучения</label>
-                                        <select class="form-select" id="userClass">
-                                            <option value="" selected disabled>Выберите класс</option>
-                                            <option value="9">9 класс</option>
-                                            <option value="10">10 класс</option>
-                                            <option value="11">11 класс</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">О себе</label>
-                                        <textarea class="form-control" rows="3" id="aboutUser" placeholder="Расскажите о себе..."></textarea>
-                                    </div>
-
-                                    <!-- Статистика обучения -->
-                                    <div class="card border-light mb-4">
-                                        <div class="card-body">
-                                            <h6 class="fw-semibold mb-3"><i class="bi bi-graph-up me-2"></i>Статистика обучения</h6>
-                                            <div class="row">
-                                                <div class="col-md-4 mb-3">
-                                                    <label class="form-label">Количество курсов</label>
-                                                    <input type="number" class="form-control" id="inputCourses" min="0" max="100" value="0">
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label class="form-label">Часов обучения</label>
-                                                    <input type="number" class="form-control" id="inputHours" min="0" max="1000" value="0">
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <label class="form-label">Прогресс (%)</label>
-                                                    <input type="number" class="form-control" id="inputProgress" min="0" max="100" value="0">
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Активность сегодня (минуты)</label>
-                                                <input type="number" class="form-control" id="inputActivity" min="0" max="480" value="0">
-                                                <div class="form-text">Введите время обучения в минутах</div>
-                                            </div>
+                                            <input type="password" class="form-control" placeholder="••••••••">
+                                            <span class="input-group-text"><i class="bi bi-eye"></i></span>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <button type="button" id="saveButton" class="btn btn-primary"><i class="bi bi-check-circle me-2"></i>Сохранить изменения</button>
-                                </form>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Новый пароль</label>
+                                        <input type="password" class="form-control" placeholder="Минимум 8 символов">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Подтвердите пароль</label>
+                                        <input type="password" class="form-control" placeholder="Повторите пароль">
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    Пароль должен содержать минимум 8 символов, включая буквы и цифры
+                                </div>
+
+                                <button class="btn btn-primary"><i class="bi bi-key me-2"></i>Обновить пароль</button>
+                            </div>
+
+                            <hr>
+
+                            <div class="mt-4">
+                                <h6 class="fw-semibold">Двухфакторная аутентификация</h6>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="twoFactorSwitch">
+                                    <label class="form-check-label" for="twoFactorSwitch">Включить двухфакторную аутентификацию</label>
+                                </div>
+                                <p class="text-muted small mt-2">Добавляет дополнительный уровень безопасности к вашему аккаунту</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Безопасность -->
-                    <div class="tab-pane fade" id="security">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold mb-4"><i class="bi bi-shield-lock me-2"></i>Настройки безопасности</h5>
+                <!-- История поиска -->
+                <div class="tab-pane fade" id="history">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>История поиска</h5>
+                                <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash me-1"></i>Очистить историю</button>
+                            </div>
 
-                                <div class="mb-4">
-                                    <h6 class="fw-semibold">Изменение пароля</h6>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Текущий пароль</label>
-                                            <div class="input-group">
-                                                <input type="password" class="form-control" placeholder="••••••••">
-                                                <span class="input-group-text"><i class="bi bi-eye"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Новый пароль</label>
-                                            <input type="password" class="form-control" placeholder="Минимум 8 символов">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label">Подтвердите пароль</label>
-                                            <input type="password" class="form-control" placeholder="Повторите пароль">
-                                        </div>
-                                    </div>
-
-                                    <div class="alert alert-info">
-                                        <i class="bi bi-info-circle me-2"></i>
-                                        Пароль должен содержать минимум 8 символов, включая буквы и цифры
-                                    </div>
-
-                                    <button class="btn btn-primary"><i class="bi bi-key me-2"></i>Обновить пароль</button>
-                                </div>
-
-                                <hr>
-
-                                <div class="mt-4">
-                                    <h6 class="fw-semibold">Двухфакторная аутентификация</h6>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="twoFactorSwitch">
-                                        <label class="form-check-label" for="twoFactorSwitch">Включить двухфакторную аутентификацию</label>
-                                    </div>
-                                    <p class="text-muted small mt-2">Добавляет дополнительный уровень безопасности к вашему аккаунту</p>
+                            <!-- История поиска -->
+                            <div class="list-group" id="searchHistory">
+                                <div class="text-center py-5 text-muted">
+                                    <i class="bi bi-clock-history display-4 mb-3"></i>
+                                    <p>История поиска пуста</p>
+                                    <small>Здесь будут отображаться ваши недавние поисковые запросы</small>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- История поиска -->
-                    <div class="tab-pane fade" id="history">
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h5 class="card-title fw-bold mb-0"><i class="bi bi-clock-history me-2"></i>История поиска</h5>
-                                    <button class="btn btn-outline-danger btn-sm"><i class="bi bi-trash me-1"></i>Очистить историю</button>
-                                </div>
-
-                                <!-- История поиска -->
-                                <div class="list-group" id="searchHistory">
-                                    <div class="text-center py-5 text-muted">
-                                        <i class="bi bi-clock-history display-4 mb-3"></i>
-                                        <p>История поиска пуста</p>
-                                        <small>Здесь будут отображаться ваши недавние поисковые запросы</small>
-                                    </div>
-                                </div>
-
-                                <!-- Фильтры -->
-                                <div class="mt-4">
-                                    <h6 class="fw-semibold mb-3">Фильтры истории</h6>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        <span class="badge bg-primary">Все</span>
-                                        <span class="badge bg-secondary">Сегодня</span>
-                                        <span class="badge bg-secondary">Неделя</span>
-                                        <span class="badge bg-secondary">Месяц</span>
-                                        <span class="badge badge-purple">ОГЭ</span>
-                                        <span class="badge badge-purple">ЕГЭ</span>
-                                        <span class="badge badge-purple">Учебники</span>
-                                    </div>
+                            <!-- Фильтры -->
+                            <div class="mt-4">
+                                <h6 class="fw-semibold mb-3">Фильтры истории</h6>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-primary">Все</span>
+                                    <span class="badge bg-secondary">Сегодня</span>
+                                    <span class="badge bg-secondary">Неделя</span>
+                                    <span class="badge bg-secondary">Месяц</span>
+                                    <span class="badge badge-purple">ОГЭ</span>
+                                    <span class="badge badge-purple">ЕГЭ</span>
+                                    <span class="badge badge-purple">Учебники</span>
                                 </div>
                             </div>
                         </div>
@@ -272,27 +257,6 @@
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Подвал -->
-    <footer class="bg-dark text-white py-4 mt-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <h5 class="mb-2">EduPlatform</h5>
-                    <p class="mb-0 text-muted">Образовательная платформа для подготовки к экзаменам</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-2">
-                        <a href="#" class="text-white text-decoration-none me-3">Политика конфиденциальности</a>
-                        <a href="#" class="text-white text-decoration-none">Условия использования</a>
-                    </p>
-                    <p class="mb-0 text-muted">EduPlatform © 2025</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'js/account_page.js' %}"></script>
-</body>
-</html>
+{% endblock $}
