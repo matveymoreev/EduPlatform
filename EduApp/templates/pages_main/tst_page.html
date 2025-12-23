@@ -1,0 +1,1636 @@
+{% extends "base/base.html" %}
+
+{% block contentMain %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОГЭ 2025 Математика - Разбор заданий</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Иконки Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #6c757d;
+            --accent-color: #20c997;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #6c757d;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--dark-text);
+            margin: 0 0.5rem;
+            transition: var(--transition);
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #4a6bff 0%, #3a5be0 100%);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            color: white;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--dark-text);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .task-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: none;
+            margin-bottom: 1rem;
+        }
+
+        .task-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .task-card-header {
+            background-color: #f8f9fa;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .task-card-header:hover {
+            background-color: #f0f2ff;
+        }
+
+        .task-number {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        .task-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--dark-text);
+            flex-grow: 1;
+        }
+
+        .arrow-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            transform: rotate(0deg);
+        }
+
+        .arrow-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .task-card-body {
+            padding: 1.5rem;
+        }
+
+        .task-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .task-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            min-width: 140px;
+            color: var(--light-text);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a5be0;
+            border-color: #3a5be0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+        }
+
+        .btn-open-task {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            float: right;
+            margin-top: 1rem;
+        }
+
+        .btn-open-task:hover {
+            background-color: #1baa7d;
+            border-color: #1baa7d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .exam-info-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2.5rem;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background-color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .copyright {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .task-example {
+            background-color: #f0f7ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .example-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-section {
+                padding: 2.5rem 0;
+            }
+
+            .task-number {
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1.1rem;
+                margin-right: 0.75rem;
+            }
+
+            .task-card-header {
+                padding: 1rem 1.25rem;
+            }
+
+            .detail-label {
+                min-width: 120px;
+            }
+
+            .btn-open-task {
+                float: none;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Герой-секция -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">ОГЭ 2025 — Математика</h1>
+            <p class="hero-subtitle">Полный разбор всех 25 заданий с примерами и решениями</p>
+        </div>
+    </section>
+
+    <!-- Информация об экзамене -->
+    <section class="py-5">
+        <div class="container">
+            <div class="exam-info-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 text-center mb-4 mb-lg-0">
+                        <div class="info-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <h3 class="mb-3">Для чего нужен экзамен по математике?</h3>
+                        <p class="mb-3">ОГЭ по математике — обязательный экзамен для всех выпускников 9 классов. Он проверяет базовые математические знания и умения, необходимые для повседневной жизни и продолжения образования. Результаты экзамена учитываются при поступлении в профильные 10-11 классы и колледжи.</p>
+                        <div class="row">
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <div class="detail-item">
+                                    <span class="detail-label">Время:</span>
+                                    <span><strong>235 минут</strong> (3 часа 55 минут)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <div class="detail-item">
+                                    <span class="detail-label">Заданий:</span>
+                                    <span><strong>25 заданий</strong> (19 базовых, 6 повышенной сложности)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="detail-item">
+                                    <span class="detail-label">Макс. баллы:</span>
+                                    <span><strong>31 балл</strong> (8 за алгебру, 7 за геометрию, 16 за реальную математику)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Разбор заданий ОГЭ по математике</h2>
+
+            <!-- Задание 1 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task1-detail" aria-expanded="true">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">1</span>
+                        <span class="task-title">Действия с обыкновенными дробями</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse show" id="task1-detail">
+                    <div class="task-content">
+                        <p>В этом задании проверяются умения выполнять арифметические действия с обыкновенными дробями: сложение, вычитание, умножение и деление. Необходимо знать правила приведения дробей к общему знаменателю, сокращения дробей и выполнения основных операций.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Вычислите значение выражения: <strong>2/3 + 1/4</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число или дробь)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task1-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 2 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task2-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">2</span>
+                        <span class="task-title">Действия с десятичными дробями</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task2-detail">
+                    <div class="task-content">
+                        <p>Задание на выполнение арифметических действий с десятичными дробями: сложение, вычитание, умножение и деление. Особое внимание уделяется правильной расстановке запятой при умножении и делении десятичных дробей.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Вычислите: <strong>3,25 × 0,4</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (десятичная дробь)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task2-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 3 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task3-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">3</span>
+                        <span class="task-title">Сравнение чисел</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task3-detail">
+                    <div class="task-content">
+                        <p>Задание на сравнение чисел: обыкновенных дробей, десятичных дробей, целых чисел, чисел с разными знаками. Необходимо уметь приводить числа к одному виду для сравнения и знать правила сравнения отрицательных чисел.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Какое из чисел больше: <strong>5/8 или 0,62?</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Выбор ответа из предложенных вариантов</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task3-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 4 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task4-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">4</span>
+                        <span class="task-title">Вычисления со степенями</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task4-detail">
+                    <div class="task-content">
+                        <p>Вычисление значений выражений, содержащих степени с натуральными и целыми показателями. Включает знание свойств степеней: умножение и деление степеней с одинаковыми основаниями, возведение степени в степень.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Вычислите: <strong>2³ + 3²</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task4-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 5 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task5-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">5</span>
+                        <span class="task-title">Задачи на проценты</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task5-detail">
+                    <div class="task-content">
+                        <p>Решение простейших задач на проценты: нахождение процента от числа, числа по его проценту, процентного отношения. Задачи связаны с реальными жизненными ситуациями: скидки, налоги, банковские проценты.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Цена товара составляла 2000 рублей. После повышения цены на 15% товар стал стоить:</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Реальная математика</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task5-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 6 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task6-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">6</span>
+                        <span class="task-title">Решение линейных уравнений</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task6-detail">
+                    <div class="task-content">
+                        <p>Решение линейных уравнений с одной переменной, уравнений, сводящихся к линейным. Включает уравнения с дробями, скобками, перенос слагаемых из одной части уравнения в другую.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Решите уравнение: <strong>3(x - 4) = 2x + 7</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task6-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 7 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task7-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">7</span>
+                        <span class="task-title">Решение квадратных уравнений</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task7-detail">
+                    <div class="task-content">
+                        <p>Решение квадратных уравнений, уравнений, сводящихся к квадратным, неполных квадратных уравнений. Может потребоваться применение формулы дискриминанта или теоремы Виета.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Решите уравнение: <strong>x² - 5x + 6 = 0</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (два числа через точку с запятой)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task7-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 8 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task8-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">8</span>
+                        <span class="task-title">Решение систем уравнений</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task8-detail">
+                    <div class="task-content">
+                        <p>Решение систем двух линейных уравнений с двумя переменными методом подстановки или сложения. Системы могут содержать как целые, так и дробные коэффициенты.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Решите систему уравнений: <br><strong>2x + y = 5<br>x - y = 1</strong></p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (пара чисел через точку с запятой)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task8-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 9 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task9-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">9</span>
+                        <span class="task-title">Решение текстовых задач</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task9-detail">
+                    <div class="task-content">
+                        <p>Решение текстовых задач на движение, работу, проценты, смеси и сплавы с помощью уравнений или систем уравнений. Требуется умение переводить текст задачи на математический язык.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Из двух городов, расстояние между которыми 300 км, одновременно навстречу друг другу выехали два автомобиля. Скорость первого 60 км/ч, второго — 40 км/ч. Через сколько часов они встретятся?</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>2 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Реальная математика</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task9-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 10 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task10-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">10</span>
+                        <span class="task-title">Работа с графиками функций</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task10-detail">
+                    <div class="task-content">
+                        <p>Определение по графику функции значения функции при заданном значении аргумента и наоборот. Работа с графиками линейных и квадратичных функций.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>На рисунке изображен график функции y = f(x). Определите по графику значение f(2).</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Выбор ответа из предложенных вариантов</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task10-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 11 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task11-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">11</span>
+                        <span class="task-title">Вычисление площади геометрических фигур</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task11-detail">
+                    <div class="task-content">
+                        <p>Вычисление площадей простейших геометрических фигур: прямоугольника, квадрата, треугольника, параллелограмма, трапеции, круга по заданным параметрам.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Найдите площадь прямоугольника со сторонами 8 см и 5 см.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task11-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 12 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task12-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">12</span>
+                        <span class="task-title">Вычисление объёма геометрических тел</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task12-detail">
+                    <div class="task-content">
+                        <p>Вычисление объёмов простейших геометрических тел: куба, прямоугольного параллелепипеда, призмы, пирамиды, цилиндра, конуса, шара по заданным параметрам.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Найдите объём куба с ребром 3 см.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task12-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 13 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task13-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">13</span>
+                        <span class="task-title">Работа с координатной плоскостью</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task13-detail">
+                    <div class="task-content">
+                        <p>Определение координат точек на координатной плоскости, построение точек по заданным координатам, вычисление расстояний между точками.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>На координатной плоскости отмечены точки A(2;3) и B(5;7). Найдите расстояние между точками A и B.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task13-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 14 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task14-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">14</span>
+                        <span class="task-title">Решение задач на подобие треугольников</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task14-detail">
+                    <div class="task-content">
+                        <p>Применение признаков подобия треугольников для решения задач на нахождение неизвестных сторон или углов в подобных треугольниках.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Треугольники ABC и DEF подобны. AB = 6 см, BC = 8 см, DE = 9 см. Найдите EF.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task14-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 15 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task15-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">15</span>
+                        <span class="task-title">Решение задач на теорему Пифагора</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task15-detail">
+                    <div class="task-content">
+                        <p>Применение теоремы Пифагора для нахождения сторон прямоугольного треугольника, решения задач на вычисление расстояний и высот.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>В прямоугольном треугольнике катеты равны 6 см и 8 см. Найдите гипотенузу.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task15-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 16 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task16-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">16</span>
+                        <span class="task-title">Решение задач на окружность и круг</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task16-detail">
+                    <div class="task-content">
+                        <p>Решение задач, связанных с окружностью и кругом: вычисление длины окружности, площади круга, дуги окружности, центральных и вписанных углов.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Найдите длину окружности радиусом 7 см (π ≈ 3,14).</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task16-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 17 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task17-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">17</span>
+                        <span class="task-title">Решение задач на комбинаторику</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task17-detail">
+                    <div class="task-content">
+                        <p>Решение простейших комбинаторных задач: перестановки, размещения, сочетания. Подсчёт числа возможных вариантов в различных ситуациях.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Сколькими способами можно выбрать 2 книги из 5 различных книг?</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task17-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 18 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task18-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">18</span>
+                        <span class="task-title">Решение задач на теорию вероятностей</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task18-detail">
+                    <div class="task-content">
+                        <p>Решение простейших задач на вычисление вероятности случайного события в классической схеме. Определение числа благоприятных и всех возможных исходов.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>В коробке 5 красных и 3 синих шара. Какова вероятность вынуть красный шар?</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (дробь или десятичная дробь)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task18-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 19 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task19-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">19</span>
+                        <span class="task-title">Работа со статистическими данными</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task19-detail">
+                    <div class="task-content">
+                        <p>Анализ табличных данных, диаграмм, графиков. Вычисление среднего арифметического, моды, медианы, размаха. Определение наиболее вероятных значений.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>По данным таблицы определите среднюю температуру за неделю.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Краткий ответ (число)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-success">Базовый</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>1 балл</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Реальная математика</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task19-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 20 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task20-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">20</span>
+                        <span class="task-title">Сложная задача на алгебру</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task20-detail">
+                    <div class="task-content">
+                        <p>Задача повышенной сложности из раздела алгебры. Может включать решение уравнений высших степеней, систем уравнений, задач с параметрами.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Решите уравнение: x³ - 3x² - 4x + 12 = 0</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>2 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task20-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 21 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task21-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">21</span>
+                        <span class="task-title">Сложная задача на геометрию</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task21-detail">
+                    <div class="task-content">
+                        <p>Задача повышенной сложности из раздела геометрии. Может включать комбинацию нескольких геометрических фактов, построение доказательств, вычисление сложных конфигураций.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>В треугольнике ABC проведены высоты. Докажите, что основание высоты делит сторону в определенном отношении.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>2 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task21-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 22 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task22-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">22</span>
+                        <span class="task-title">Задача на оптимизацию</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task22-detail">
+                    <div class="task-content">
+                        <p>Задача на нахождение наибольшего или наименьшего значения функции, оптимизацию параметров в реальных ситуациях. Применение производной или свойств функций.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Найдите наибольшую площадь прямоугольника с периметром 20 см.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>2 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task22-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 23 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task23-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">23</span>
+                        <span class="task-title">Задача с параметром</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task23-detail">
+                    <div class="task-content">
+                        <p>Задача, содержащая параметр, который влияет на решение. Требуется исследовать все возможные случаи в зависимости от значений параметра.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>При каких значениях параметра a уравнение x² - ax + 4 = 0 имеет два различных корня?</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>2 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Алгебра</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task23-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 24 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task24-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">24</span>
+                        <span class="task-title">Комплексная геометрическая задача</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task24-detail">
+                    <div class="task-content">
+                        <p>Сложная геометрическая задача, требующая применения нескольких теорем и свойств геометрических фигур, построения дополнительных элементов.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>В трапеции ABCD с основаниями AD и BC диагонали пересекаются в точке O. Докажите, что площади треугольников AOB и COD равны.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-warning">Повышенный</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>3 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task24-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Задание 25 -->
+            <div class="task-card">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task25-detail">
+                    <div class="d-flex align-items-center">
+                        <span class="task-number">25</span>
+                        <span class="task-title">Задача на доказательство</span>
+                    </div>
+                    <i class="bi bi-chevron-down arrow-icon"></i>
+                </div>
+                <div class="task-card-body collapse" id="task25-detail">
+                    <div class="task-content">
+                        <p>Задача на доказательство математического утверждения, содержащая цепочку логических рассуждений, применение теорем и свойств.</p>
+
+                        <div class="task-example">
+                            <div class="example-title">Пример задания:</div>
+                            <p>Докажите, что сумма квадратов диагоналей параллелограмма равна сумме квадратов всех его сторон.</p>
+                        </div>
+
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Тип задания:</span>
+                                <span>Развернутый ответ (доказательство)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Уровень сложности:</span>
+                                <span><span class="badge bg-danger">Высокий</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Макс. балл:</span>
+                                <span>4 балла</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Раздел:</span>
+                                <span>Геометрия</span>
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <a href="task25-detail.html" class="btn btn-open-task">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Информация о количестве заданий -->
+            <div class="alert alert-info mt-4">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+                    <div>
+                        <h5 class="mb-1">Все задания ОГЭ по математике: 25</h5>
+                        <p class="mb-0">Задания 1-19 — базового уровня сложности (1 балл каждое). Задания 20-25 — повышенного уровня сложности с развернутым ответом (2-4 балла). Максимальный балл — 31.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="index.html" class="btn btn-primary me-3">
+                    <i class="bi bi-arrow-left me-2"></i>Назад к выбору предметов
+                </a>
+                <a href="#" class="btn btn-outline-primary me-3">
+                    <i class="bi bi-download me-2"></i>Скачать все задания (PDF)
+                </a>
+                <a href="#" class="btn btn-outline-primary">
+                    <i class="bi bi-clipboard-check me-2"></i>Пройти пробный тест
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h5 class="mb-3">ОГЭ 2025 — Математика</h5>
+                    <p class="text-muted">Полный разбор всех 25 заданий с примерами решений и методическими рекомендациями. Все материалы соответствуют спецификации ФИПИ 2025 года.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="mb-3">Разделы математики</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Алгебра (1-14 задания)</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Геометрия (15-19 задания)</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Реальная математика (20-25 задания)</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="mb-3">Дополнительно</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Тренировочные тесты</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Критерии оценивания</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Типичные ошибки</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Методические рекомендации</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright text-center">
+                        <p>© 2025 EduPlatform. Подготовка к ОГЭ по математике 2025. Все задания соответствуют обновленной спецификации ФИПИ.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Управление стрелочками при открытии/закрытии
+        document.querySelectorAll('.task-card-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const arrow = this.querySelector('.arrow-icon');
+                arrow.classList.toggle('rotated');
+            });
+        });
+
+        // Автоматически открываем первое задание при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Первое задание уже открыто по умолчанию (класс "show")
+            const firstArrow = document.querySelector('#task1-detail').previousElementSibling.querySelector('.arrow-icon');
+            firstArrow.classList.add('rotated');
+
+            // Обработка события при закрытии аккордеона через Bootstrap
+            document.querySelectorAll('.task-card-body').forEach(collapseElement => {
+                collapseElement.addEventListener('hidden.bs.collapse', function() {
+                    const header = this.previousElementSibling;
+                    const arrow = header.querySelector('.arrow-icon');
+                    arrow.classList.remove('rotated');
+                });
+
+                collapseElement.addEventListener('shown.bs.collapse', function() {
+                    const header = this.previousElementSibling;
+                    const arrow = header.querySelector('.arrow-icon');
+                    arrow.classList.add('rotated');
+                });
+            });
+        });
+
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock contentMain %}

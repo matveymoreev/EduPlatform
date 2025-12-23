@@ -1,47 +1,13 @@
 {% extends "base/base.html" %}
 
 {% block contentMain %}
-<!-- Навигация как на главной -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-    <div class="container">
-        <a class="navbar-brand fw-bold fs-3 text-primary" href="#">EduPlatform</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Курсы</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">ОГЭ 2025</a></li>
-                        <li><a class="dropdown-item" href="#">ЕГЭ 2025</a></li>
-                        <li><a class="dropdown-item" href="#">Учебники</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Все курсы</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- ПОИСК И АККАУНТ КАК НА ГЛАВНОЙ -->
-            <form class="d-flex me-3">
-                <input class="form-control me-2" type="search" placeholder="Поиск курсов...">
-                <button class="btn btn-outline-primary" type="submit">Найти</button>
-            </form>
-
-            <button class="btn btn-outline-secondary">Аккаунт</button>
-        </div>
-    </div>
-</nav>
-
 <!-- Основной контент -->
 <div class="container py-4">
     <!-- Заголовок -->
     <div class="row mb-4">
         <div class="col-lg-8">
-            <h1 class="display-5 fw-bold mb-2">ОГЭ 2025 — Полная подготовка</h1>
-            <p class="lead text-muted mb-3">Выберите предмет для подготовки к Основному государственному экзамену</p>
+            <h1 class="display-5 fw-bold mb-2">{{exam}} 2025 — Полная подготовка</h1>
+            <p class="lead text-muted mb-3">Выберите предмет для подготовки к {{exam_details}}</p>
             <div class="alert alert-info d-flex align-items-center">
                 <i class="bi bi-info-circle-fill fs-4 me-3"></i>
                 <div>Экзамен состоит из 4 обязательных предметов: математика, русский язык + 2 предмета по выбору</div>
@@ -65,7 +31,7 @@
                         <span class="badge bg-light text-dark">Обязательный</span><i class="bi bi-calculator fs-4"></i>
                     </div><h4 class="fw-bold">Математика</h4><p class="opacity-75 mb-4">Алгебра и геометрия</p>
                     <div class="d-flex justify-content-between"><div><small>Тесты: 120</small><br><small>Вопросы: 850+</small></div>
-                    <button class="btn btn-light btn-sm">Начать</button></div></div></div></div>
+                    <button class="btn btn-light btn-sm"><a href="/tst">Начать</a></button></div></div></div></div>
 
                 <!-- Русский -->
                 <div class="col"><div class="card subject-card shadow russian-card text-white">
@@ -179,7 +145,7 @@
     <!-- Статистика -->
     <div class="row mt-5">
         <div class="col-12"><div class="card shadow">
-            <div class="card-header bg-white"><h5 class="mb-0"><i class="bi bi-bar-chart-line me-2"></i>Популярность предметов ОГЭ 2024</h5></div>
+            <div class="card-header bg-white"><h5 class="mb-0"><i class="bi bi-bar-chart-line me-2"></i>Популярность предметов {{exam}} 2024</h5></div>
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-md-7">
@@ -195,7 +161,7 @@
                     </div>
                     <div class="col-md-5"><div class="alert alert-light">
                         <h6><i class="bi bi-lightbulb me-2"></i>Совет по выбору</h6>
-                        <p class="small mb-0">Выбирайте предметы, которые нужны для поступления в колледж или профильный 10 класс</p>
+                        <p class="small mb-0">Выбирайте предметы, которые нужны для поступления в колледж или {{edu}}</p>
                     </div></div>
                 </div>
             </div>
@@ -203,4 +169,4 @@
     </div>
 </div>
 
-{% endblock $}
+{% endblock contentMain %}
