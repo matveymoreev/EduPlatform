@@ -30,8 +30,8 @@ def tst(request):
 
 
 
-def book(request):
-    return render(request, "pages_main/book_page.html")
+def books(request):
+    return render(request, "pages_main/books_page.html")
 
 
 
