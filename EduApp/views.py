@@ -13,7 +13,7 @@ def oge_subjects(request):
 
 
 
-def account(request):
+def acc(request):
     return render(request, "pages_main/account_page.html")
 
 
@@ -27,11 +27,23 @@ def ege_subjects(request):
 def tst(request):
     return render(request, "pages_main/tst_page.html")
 
+def number(request):
+    return render(request, "pages_main/number_page.html")
 
 
 
-def book(request):
-    return render(request, "pages_main/book_page.html")
+
+def books(request):
+    return render(request, "pages_main/books_page.html")
+
+def auth(request):
+    return render(request, "pages_main/auth_page.html")
+def login_page(request):
+    return render(request, "pages_main/login_page.html")
+def logout_page(request):
+    return render(request, "pages_main/logout_page.html")
+def registration_page(request):
+    return render(request, "pages_main/registration_page.html")
 
 
 

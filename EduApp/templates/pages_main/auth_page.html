@@ -1,0 +1,777 @@
+{% extends "base/base.html" %}
+
+{% block contentMain %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Образовательная платформа для школьников</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Иконки Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #6c757d;
+            --accent-color: #20c997;
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #6c757d;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: var(--dark-text);
+            min-height: 100vh;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a5be0;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+        }
+
+        /* Контейнер регистрации */
+        .registration-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 100%);
+        }
+
+        .registration-card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            transition: var(--transition);
+        }
+
+        .registration-card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .registration-logo {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .registration-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .registration-subtitle {
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+            display: flex;
+            align-items: center;
+        }
+
+        .form-label i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #eef1ff;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(74, 107, 255, 0.25);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .btn-register {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            width: 100%;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .btn-register:hover {
+            background-color: #3a5be0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 107, 255, 0.3);
+        }
+
+        .btn-register i {
+            margin-right: 0.5rem;
+        }
+
+        .terms-check {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .terms-check a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .terms-check a:hover {
+            text-decoration: underline;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .validation-feedback {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .validation-valid {
+            color: #28a745;
+        }
+
+        .validation-invalid {
+            color: #dc3545;
+        }
+
+        /* Футер */
+        .footer {
+            background-color: var(--light-bg);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            .nav-buttons {
+                order: 2;
+            }
+
+            .registration-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .registration-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-outline, .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Анимация появления */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Основной контент -->
+    <div class="registration-container fade-in-up">
+        <div class="registration-card">
+            <div class="registration-header">
+                <div class="registration-logo">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <h1 class="registration-title">Регистрация</h1>
+                <p class="registration-subtitle">Создайте аккаунт для доступа к учебным материалам</p>
+            </div>
+
+            <form id="registrationForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">
+                                <i class="bi bi-person"></i> Имя
+                            </label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Введите ваше имя" required>
+                            <div class="validation-feedback" id="firstNameFeedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">
+                                <i class="bi bi-person-badge"></i> Фамилия
+                            </label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Введите вашу фамилию" required>
+                            <div class="validation-feedback" id="lastNameFeedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="class" class="form-label">
+                                <i class="bi bi-mortarboard"></i> Класс
+                            </label>
+                            <select class="form-select" id="class" required>
+                                <option value="" selected disabled>Выберите класс</option>
+                                <option value="8">8 класс</option>
+                                <option value="9">9 класс</option>
+                                <option value="10">10 класс</option>
+                                <option value="11">11 класс</option>
+                            </select>
+                            <div class="validation-feedback" id="classFeedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="age" class="form-label">
+                                <i class="bi bi-calendar3"></i> Возраст
+                            </label>
+                            <input type="number" class="form-control" id="age" placeholder="Введите ваш возраст" min="12" max="18" required>
+                            <div class="validation-feedback" id="ageFeedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="bi bi-envelope"></i> Электронная почта
+                    </label>
+                    <input type="email" class="form-control" id="email" placeholder="example@mail.ru" required>
+                    <div class="validation-feedback" id="emailFeedback"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="bi bi-lock"></i> Пароль
+                    </label>
+                    <div class="password-container">
+                        <input type="password" class="form-control" id="password" placeholder="Придумайте надежный пароль" required>
+                        <button type="button" class="password-toggle" id="togglePassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="validation-feedback" id="passwordFeedback"></div>
+                    <small class="form-text text-muted">Пароль должен содержать не менее 8 символов</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">
+                        <i class="bi bi-lock-fill"></i> Подтвердите пароль
+                    </label>
+                    <div class="password-container">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Повторите пароль" required>
+                        <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                    <div class="validation-feedback" id="confirmPasswordFeedback"></div>
+                </div>
+
+                <div class="form-check terms-check">
+                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                    <label class="form-check-label" for="termsCheck">
+                        Я соглашаюсь с <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">условиями использования</a> и <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">политикой конфиденциальности</a>
+                    </label>
+                    <div class="validation-feedback" id="termsFeedback"></div>
+                </div>
+
+                <button type="submit" class="btn btn-register">
+                    <i class="bi bi-person-plus me-2"></i> Зарегистрироваться
+                </button>
+
+                <div class="login-link">
+                    Уже есть аккаунт? <a href="#">Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">Условия использования</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Контакты</a>
+            <a href="#">Помощь</a>
+        </div>
+        <p>&copy; 2025 Образовательная платформа для школьников. Все права защищены.</p>
+    </footer>
+
+    <!-- Модальные окна -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Условия использования</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Регистрируясь на платформе, вы соглашаетесь с тем, что:</p>
+                    <ul>
+                        <li>Вы предоставляете достоверную информацию о себе</li>
+                        <li>Вы будете использовать платформу в образовательных целях</li>
+                        <li>Вы не будете передавать свои учетные данные третьим лицам</li>
+                        <li>Вы соблюдаете правила поведения на платформе</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Понятно</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Политика конфиденциальности</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Мы обязуемся защищать ваши персональные данные:</p>
+                    <ul>
+                        <li>Ваши данные используются только для предоставления доступа к учебным материалам</li>
+                        <li>Мы не передаем ваши данные третьим лицам без вашего согласия</li>
+                        <li>Вы можете запросить удаление ваших данных в любое время</li>
+                        <li>Мы используем современные методы защиты данных</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Понятно</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Переключение видимости пароля
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+
+        // Переключение видимости подтверждения пароля
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const icon = this.querySelector('i');
+
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                confirmPasswordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+
+        // Валидация формы
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Валидация имени
+            const firstName = document.getElementById('firstName');
+            const firstNameFeedback = document.getElementById('firstNameFeedback');
+            if (firstName.value.trim() === '') {
+                showError(firstName, firstNameFeedback, 'Пожалуйста, введите ваше имя');
+                isValid = false;
+            } else if (firstName.value.trim().length < 2) {
+                showError(firstName, firstNameFeedback, 'Имя должно содержать не менее 2 символов');
+                isValid = false;
+            } else {
+                showSuccess(firstName, firstNameFeedback, 'Отлично!');
+            }
+
+            // Валидация фамилии
+            const lastName = document.getElementById('lastName');
+            const lastNameFeedback = document.getElementById('lastNameFeedback');
+            if (lastName.value.trim() === '') {
+                showError(lastName, lastNameFeedback, 'Пожалуйста, введите вашу фамилию');
+                isValid = false;
+            } else if (lastName.value.trim().length < 2) {
+                showError(lastName, lastNameFeedback, 'Фамилия должна содержать не менее 2 символов');
+                isValid = false;
+            } else {
+                showSuccess(lastName, lastNameFeedback, 'Отлично!');
+            }
+
+            // Валидация класса
+            const classSelect = document.getElementById('class');
+            const classFeedback = document.getElementById('classFeedback');
+            if (!classSelect.value) {
+                showError(classSelect, classFeedback, 'Пожалуйста, выберите ваш класс');
+                isValid = false;
+            } else {
+                showSuccess(classSelect, classFeedback, 'Отлично!');
+            }
+
+            // Валидация возраста
+            const age = document.getElementById('age');
+            const ageFeedback = document.getElementById('ageFeedback');
+            if (!age.value) {
+                showError(age, ageFeedback, 'Пожалуйста, введите ваш возраст');
+                isValid = false;
+            } else if (age.value < 12 || age.value > 18) {
+                showError(age, ageFeedback, 'Возраст должен быть от 12 до 18 лет');
+                isValid = false;
+            } else {
+                showSuccess(age, ageFeedback, 'Отлично!');
+            }
+
+            // Валидация email
+            const email = document.getElementById('email');
+            const emailFeedback = document.getElementById('emailFeedback');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value) {
+                showError(email, emailFeedback, 'Пожалуйста, введите email');
+                isValid = false;
+            } else if (!emailRegex.test(email.value)) {
+                showError(email, emailFeedback, 'Пожалуйста, введите корректный email');
+                isValid = false;
+            } else {
+                showSuccess(email, emailFeedback, 'Отлично!');
+            }
+
+            // Валидация пароля
+            const password = document.getElementById('password');
+            const passwordFeedback = document.getElementById('passwordFeedback');
+            if (!password.value) {
+                showError(password, passwordFeedback, 'Пожалуйста, придумайте пароль');
+                isValid = false;
+            } else if (password.value.length < 8) {
+                showError(password, passwordFeedback, 'Пароль должен содержать не менее 8 символов');
+                isValid = false;
+            } else {
+                showSuccess(password, passwordFeedback, 'Надежный пароль!');
+            }
+
+            // Валидация подтверждения пароля
+            const confirmPassword = document.getElementById('confirmPassword');
+            const confirmPasswordFeedback = document.getElementById('confirmPasswordFeedback');
+            if (!confirmPassword.value) {
+                showError(confirmPassword, confirmPasswordFeedback, 'Пожалуйста, подтвердите пароль');
+                isValid = false;
+            } else if (password.value !== confirmPassword.value) {
+                showError(confirmPassword, confirmPasswordFeedback, 'Пароли не совпадают');
+                isValid = false;
+            } else {
+                showSuccess(confirmPassword, confirmPasswordFeedback, 'Пароли совпадают!');
+            }
+
+            // Валидация согласия с условиями
+            const termsCheck = document.getElementById('termsCheck');
+            const termsFeedback = document.getElementById('termsFeedback');
+            if (!termsCheck.checked) {
+                showError(termsCheck, termsFeedback, 'Необходимо согласиться с условиями');
+                isValid = false;
+            } else {
+                showSuccess(termsCheck, termsFeedback, '');
+            }
+
+            // Если форма валидна
+            if (isValid) {
+                // Здесь обычно отправка данных на сервер
+                alert('Регистрация успешна! Данные отправлены на сервер.');
+                // Сброс формы
+                document.getElementById('registrationForm').reset();
+                // Скрытие всех сообщений валидации
+                document.querySelectorAll('.validation-feedback').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        });
+
+        // Функция показа ошибки
+        function showError(input, feedbackElement, message) {
+            input.classList.add('is-invalid');
+            input.classList.remove('is-valid');
+            feedbackElement.textContent = message;
+            feedbackElement.className = 'validation-feedback validation-invalid';
+            feedbackElement.style.display = 'block';
+        }
+
+        // Функция показа успеха
+        function showSuccess(input, feedbackElement, message) {
+            input.classList.remove('is-invalid');
+            input.classList.add('is-valid');
+            feedbackElement.textContent = message;
+            feedbackElement.className = 'validation-feedback validation-valid';
+            feedbackElement.style.display = 'block';
+        }
+
+        // Реальная валидация при вводе
+        document.querySelectorAll('#registrationForm input, #registrationForm select').forEach(input => {
+            input.addEventListener('blur', function() {
+                // Запускаем базовую валидацию при потере фокуса
+                if (this.value.trim() !== '' || (this.type === 'checkbox' && this.checked)) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+{% endblock contentMain %}

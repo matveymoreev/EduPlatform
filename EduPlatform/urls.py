@@ -15,16 +15,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from EduApp import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.main),
     path("OGE_subjects/", views.oge_subjects),
-    path("account/", views.account),
+    path("acc/", views.acc),
     path("EGE_subjects/", views.ege_subjects),
-    path("book/", views.book),
-    path("tst/", views.tst)
+    re_path(r"^books", views.books),
+    path("tst/", views.tst),
+    path("number/", views.number),
+
+    #ссылки регистрации
+    path('login/', views.login_page),
+    path('accounts/login/', views.login_page),
+    path('logout/', views.logout_page),
+    path('reg/', views.registration_page),
+
 
 ]

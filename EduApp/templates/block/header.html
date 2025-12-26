@@ -1,7 +1,10 @@
 <!-- Навигационная панель -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
     <div class="container">
-        <a class="navbar-brand" href="/">EduPlatform</a>
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <i class="bi bi-mortarboard fs-4 me-2 text-primary"></i>
+            <span>EduPlatform</span>
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
@@ -10,24 +13,40 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        Курсы
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Каталог
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/OGE_subjects">ОГЭ 2025</a></li>
-                        <li><a class="dropdown-item" href="/EGE_subjects">ЕГЭ 2025</a></li>
-                        <li><a class="dropdown-item" href="/book">Учебники</a></li>
+                        <li><a class="dropdown-item" href="OGE_subjects">ОГЭ 2025</a></li>
+                        <li><a class="dropdown-item" href="EGE_subjects">ЕГЭ 2025</a></li>
+                        <li><a class="dropdown-item" href="books">Учебники</a></li>
                         <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Видеоуроки</a></li>
+                        <li><a class="dropdown-item" href="#">Репетиторы</a></li>
                     </ul>
+                </li>
+
+                <!-- Дополнительные ссылки -->
+                <li class="nav-item">
+                    <a class="nav-link" href="OGE_subjects">ОГЭ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="EGE_subjects">ЕГЭ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="books">Учебники</a>
                 </li>
             </ul>
 
             <form class="d-flex me-3">
-                <input class="form-control me-2" type="search" placeholder="Поиск курсов...">
+                <input class="form-control me-2" type="search" placeholder="Поиск курсов..." aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Найти</button>
             </form>
 
-            <button class="btn btn-outline-secondary"> <a href="/account">Аккаунт</a></button> 
+            <div class="d-flex">
+                <a href="login" class="btn btn-outline-primary me-2">Войти</a>
+                <a href="acc" class="btn btn-primary">Регистрация</a>
+            </div>
         </div>
     </div>
 </nav>
