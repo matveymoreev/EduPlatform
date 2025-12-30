@@ -29,11 +29,13 @@ urlpatterns = [
     path("tst/", views.tst),
     path("number/", views.number),
 
+
+
     #ссылки регистрации
     path('login/', views.login_page),
     path('accounts/login/', views.login_page),
     path('logout/', views.logout_page),
-    path('reg/', views.registration_page),
+    path('reg/', views.auth_page),
 
 
 ]

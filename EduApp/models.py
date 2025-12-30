@@ -6,13 +6,14 @@ class User(models.Model):
     surname = models.CharField(max_length=30)
     email = models.EmailField()
     password = models.CharField(max_length=30)
-    class_id = models.CharField(max_length=2)
+    class_id = models.IntegerField()
     about = models.CharField(max_length=300)
     birth_date= models.DateField()
     course_cnt = models.IntegerField()
     hours = models.IntegerField()
     progress = models.IntegerField()
     activity = models.IntegerField()
+
 
 
 

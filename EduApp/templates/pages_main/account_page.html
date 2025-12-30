@@ -65,14 +65,17 @@
                             <h5 class="card-title fw-bold mb-4"><i class="bi bi-person-lines-fill me-2"></i>Личная информация</h5>
 
                             <form id="profileForm">
+
+                                {% csrf_token %}
+
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Имя</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="Введите имя">
+                                        <input name="user_name" type="text" class="form-control" id="firstName" placeholder="Введите имя">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-semibold">Фамилия</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию">
+                                        <input name="surname" type="text" class="form-control" id="lastName" placeholder="Введите фамилию">
                                     </div>
                                 </div>
 
@@ -80,14 +83,14 @@
                                     <label class="form-label fw-semibold">Электронная почта</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                        <input type="email" class="form-control" id="userEmail" placeholder="email@example.com">
+                                        <input name="email" type="email" class="form-control" id="userEmail" placeholder="email@example.com">
                                     </div>
                                     <div class="form-text">Мы отправим подтверждение на этот адрес</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Дата рождения</label>
-                                    <input type="date" class="form-control" id="birthDate">
+                                    <input name="birthDate" type="date" class="form-control" id="birthDate">
                                 </div>
 
                                 <div class="mb-3">
@@ -158,11 +161,11 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Новый пароль</label>
-                                        <input type="password" class="form-control" placeholder="Минимум 8 символов">
+                                        <input name="password" type="password" class="form-control" placeholder="Минимум 8 символов">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Подтвердите пароль</label>
-                                        <input type="password" class="form-control" placeholder="Повторите пароль">
+                                        <input name="password_repeat" type="password" class="form-control" placeholder="Повторите пароль">
                                     </div>
                                 </div>
 
@@ -179,7 +182,7 @@
                             <div class="mt-4">
                                 <h6 class="fw-semibold">Двухфакторная аутентификация</h6>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="twoFactorSwitch">
+                                        <input class="form-check-input" type="checkbox" id="twoFactorSwitch">
                                     <label class="form-check-label" for="twoFactorSwitch">Включить двухфакторную аутентификацию</label>
                                 </div>
                                 <p class="text-muted small mt-2">Добавляет дополнительный уровень безопасности к вашему аккаунту</p>
