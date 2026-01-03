@@ -44,8 +44,12 @@
             </form>
 
             <div class="d-flex">
-                <a href="/login" class="btn btn-outline-primary me-2">Войти</a>
-                <a href="/reg" class="btn btn-primary">Регистрация</a>
+                {% if logIn %}
+                    <button type="button" class="btn btn-light">Аккаунт</button>
+                {% else %}
+                    <a href="/login" class="btn btn-outline-primary me-2">Войти</a>
+                    <a href="/reg" class="btn btn-primary">Регистрация</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ document.getElementById('toggleConfirmPassword').addEventListener('click', funct
 
 // Валидация формы
 document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     let isValid = true;
 
@@ -79,8 +79,8 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     if (!age.value) {
         showError(age, ageFeedback, 'Пожалуйста, введите ваш возраст');
         isValid = false;
-    } else if (age.value < 12 || age.value > 18) {
-        showError(age, ageFeedback, 'Возраст должен быть от 12 до 18 лет');
+    } else if (age.value < 12 || age.value > 45) {
+        showError(age, ageFeedback, 'Возраст должен быть от 12 до 45 лет');
         isValid = false;
     } else {
         showSuccess(age, ageFeedback, 'Отлично!');
@@ -139,13 +139,15 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     // Если форма валидна
     if (isValid) {
         // Здесь обычно отправка данных на сервер
-        alert('Регистрация успешна! Данные отправлены на сервер.');
+        // alert('Регистрация успешна! Данные отправлены на сервер.');
         // Сброс формы
-        document.getElementById('registrationForm').reset();
+        // document.getElementById('registrationForm').reset();
         // Скрытие всех сообщений валидации
         document.querySelectorAll('.validation-feedback').forEach(el => {
             el.style.display = 'none';
         });
+    } else {
+        event.preventDefault();
     }
 });
 

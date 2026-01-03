@@ -54,7 +54,7 @@
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task1-detail" aria-expanded="true">
                     <div class="d-flex align-items-center">
                         <span class="task-number">1</span>
-                        <span class="task-title">Действия с обыкновенными дробями</span>
+                        <span class="task-title">{{topic}}</span>
                     </div>
                     <i class="bi bi-chevron-down arrow-icon"></i>
                 </div>
@@ -106,29 +106,29 @@
                 </div>
                 <div class="task-card-body collapse" id="task2-detail">
                     <div class="task-content">
-                        <p>Задание на выполнение арифметических действий с десятичными дробями: сложение, вычитание, умножение и деление. Особое внимание уделяется правильной расстановке запятой при умножении и делении десятичных дробей.</p>
+                        <p>{{task_topic}}</p>
 
                         <div class="task-example">
                             <div class="example-title">Пример задания:</div>
-                            <p>Вычислите: <strong>3,25 × 0,4</strong></p>
+                            <p>{{task}} <strong>{{example}}</strong></p>
                         </div>
 
                         <div class="task-details">
                             <div class="detail-item">
                                 <span class="detail-label">Тип задания:</span>
-                                <span>Краткий ответ (десятичная дробь)</span>
+                                <span>{{task_type}}</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Уровень сложности:</span>
-                                <span><span class="badge bg-success">Базовый</span></span>
+                                <span><span class="badge bg-success">{{difficulty}}</span></span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Макс. балл:</span>
-                                <span>1 балл</span>
+                                <span>{{mark}} балл</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Раздел:</span>
-                                <span>Алгебра</span>
+                                <span>{{subject}}</span>
                             </div>
                         </div>
 

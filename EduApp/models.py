@@ -8,7 +8,7 @@ class User(models.Model):
     password = models.CharField(max_length=30)
     class_id = models.IntegerField()
     about = models.CharField(max_length=300)
-    birth_date= models.DateField()
+    birth_date = models.DateField()
     course_cnt = models.IntegerField()
     hours = models.IntegerField()
     progress = models.IntegerField()
@@ -19,24 +19,16 @@ class User(models.Model):
 
 
 class Task(models.Model):
-    description = models.CharField(max_length=300)
-    title = models.CharField(max_length=300)
-    number = models.IntegerField()
-    # number_of_hours = models.IntegerField()
-    answers = models.CharField(max_length=300)
-    goodAnswers = models.IntegerField()
-    badAnswers = models.IntegerField()
+    topic = models.CharField(max_length=300, default="")
+    task_topic = models.CharField(max_length=300, default="")
+    task = models.CharField(max_length=300, default="")
+    example = models.CharField(max_length=300, default="")
+    task_type = models.CharField(max_length=300, default="")
+    difficulty = models.CharField(max_length=300, default="")
+    mark = models.IntegerField()
+    subject = models.CharField(max_length=300, default="")
 
 
-
-'''
-#описание, заголовок, номер, количество решений, ответ
-    def __init__(self, description, title, number, number_of_solutions, answer):
-        self.description = description
-        self.title = title
-        self.number = number
-        self.number_of_solutions = number_of_solutions
-        self.answer = answer'''
 
 
 

@@ -14,7 +14,7 @@
                 <p class="registration-subtitle">Создайте аккаунт для доступа к учебным материалам</p>
             </div>
 
-            <form id="registrationForm" method="post" action="">
+            <form id="registrationForm" method="POST" action="">
 
                 {% csrf_token %}
 
@@ -62,7 +62,7 @@
                             <label for="age" class="form-label">
                                 <i class="bi bi-calendar3"></i> Возраст
                             </label>
-                            <input name="age" type="number" class="form-control" id="age" placeholder="Введите ваш возраст" min="12" max="18" required>
+                            <input name="age" type="number" class="form-control" id="age" placeholder="Введите ваш возраст" min="12" max="45" required>
                             <div class="validation-feedback" id="ageFeedback"></div>
                         </div>
                     </div>
@@ -73,12 +73,12 @@
                         <i class="bi bi-envelope"></i> Электронная почта
                     </label>
                     <input name="email" type="email" class="form-control" id="email" placeholder="example@mail.ru" required>
-                    <div class="validation-feedback" id="emailFeedback"></div>
                     {% if errors %}
-                        <div class="col-3 mx-auto bg-danger">
+                        <div class="badge text-bg-danger">
                             {{ errors }}
                         </div>
                     {% endif %}
+                <div class="validation-feedback" id="emailFeedback"></div>
                 </div>
 
                 <div class="form-group">
@@ -126,17 +126,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#">Условия использования</a>
-            <a href="#">Политика конфиденциальности</a>
-            <a href="#">Контакты</a>
-            <a href="#">Помощь</a>
-        </div>
-        <p>&copy; 2025 Образовательная платформа для школьников. Все права защищены.</p>
-    </footer>
 
     <!-- Модальные окна -->
     <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
