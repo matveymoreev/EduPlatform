@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--7@%bl4zfviju0!tvb)&v-+d53db9x7^r+-7!%weeltcbv0hef
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["www.eduplatformproject.ru", "eduplatformproject.ru", "127.0.0.1"]
 
 
 # Application definition
@@ -79,6 +79,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'u3375614_default',
+    #     'USER': 'u3375614_default',
+    #     'PASSWORD': '8x3ZV2PrkmO8V4Wu',
+    #     'HOST': 'localhost',
+    # }
 }
 
 
@@ -116,11 +123,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-#добавлили путь до статических файлов.
-STATIC_URL = 'static/'
+#добавили путь до статических файлов.
+STATIC_URL = '/static/'
+STATIC_ROOT='staticfiles/'
 #путь до папки со статическими файлами.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/'),
 ]
 
 

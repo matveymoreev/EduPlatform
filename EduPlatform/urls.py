@@ -31,6 +31,30 @@ urlpatterns = [
 
 
 
+    path("OGE_math/", views.tst),
+    path("EGE_math/", views.tst),
+    path("OGE_russian/", views.tst),
+    path("EGE_russian/", views.tst),
+    path("OGE_informatics/", views.tst),
+    path("EGE_informatics/", views.tst),
+    path("OGE_physics/", views.tst),
+    path("EGE_physics/", views.tst),
+    path("OGE_biology/", views.tst),
+    path("EGE_biology/", views.tst),
+    path("OGE_chemistry/", views.tst),
+    path("EGE_chemistry/", views.tst),
+    path("OGE_history/", views.tst),
+    path("EGE_history/", views.tst),
+    path("OGE_social_studies/", views.tst),
+    path("EGE_social_studies/", views.tst),
+    path("OGE_literature/", views.tst),
+    path("EGE_literature/", views.tst),
+    path("OGE_english/", views.tst),
+    path("EGE_english/", views.tst),
+    path("OGE_geography/", views.tst),
+    path("EGE_geography/", views.tst),
+
+
     #ссылки регистрации
     path('login/', views.login_page),
     path('accounts/login/', views.login_page),

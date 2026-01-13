@@ -5,8 +5,8 @@
     <!-- Герой-секция -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="hero-title">ОГЭ 2025 — Математика</h1>
-            <p class="hero-subtitle">Полный разбор всех 25 заданий с примерами и решениями</p>
+            <h1 class="hero-title">{{exam}} 2025 — {{object}}</h1>
+            <p class="hero-subtitle">Полный разбор всех {{numders}} заданий с примерами и решениями</p>
         </div>
     </section>
 
@@ -21,25 +21,25 @@
                         </div>
                     </div>
                     <div class="col-lg-10">
-                        <h3 class="mb-3">Для чего нужен экзамен по математике?</h3>
-                        <p class="mb-3">ОГЭ по математике — обязательный экзамен для всех выпускников 9 классов. Он проверяет базовые математические знания и умения, необходимые для повседневной жизни и продолжения образования. Результаты экзамена учитываются при поступлении в профильные 10-11 классы и колледжи.</p>
+                        <h3 class="mb-3">Для чего нужен экзамен по {{object2}}?</h3>
+                        <p class="mb-3">{{title}}</p>
                         <div class="row">
                             <div class="col-md-4 mb-2 mb-md-0">
                                 <div class="detail-item">
                                     <span class="detail-label">Время:</span>
-                                    <span><strong>235 минут</strong> (3 часа 55 минут)</span>
+                                    <span><strong>{{time_minutes}}</strong> ({{time_hours}})</span>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-2 mb-md-0">
                                 <div class="detail-item">
                                     <span class="detail-label">Заданий:</span>
-                                    <span><strong>25 заданий</strong> (19 базовых, 6 повышенной сложности)</span>
+                                    <span><strong>{{test_count}}</strong> ({{write_task_count}})</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="detail-item">
                                     <span class="detail-label">Макс. баллы:</span>
-                                    <span><strong>31 балл</strong> (8 за алгебру, 7 за геометрию, 16 за реальную математику)</span>
+                                    <span><strong>{{max_scores}}</strong> ({{details}})</span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <h2 class="section-title">Разбор заданий ОГЭ по математике</h2>
+            <h2 class="section-title">Разбор заданий {{exam}} по {{object2}}</h2>
 
             <!-- Задание 1 -->
             <div class="task-card">
@@ -266,7 +266,7 @@
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Раздел:</span>
-                                <span>Реальная математика</span>
+                                <span>Алгебра</span>
                             </div>
                         </div>
 
