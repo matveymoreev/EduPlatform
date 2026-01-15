@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from EduApp import views
+from EduApp.views_funcs import subject_views
+from EduApp.views_funcs import views
+
+
+
 
 
 urlpatterns = [
@@ -26,33 +30,33 @@ urlpatterns = [
     path("acc/", views.acc),
     path("EGE_subjects/", views.ege_subjects),
     re_path(r"^books", views.books),
-    path("tst/", views.tst),
+    path("tst/", subject_views.tst),
     path("number/", views.number),
 
 
 
-    path("OGE_math/", views.tst),
-    path("EGE_math/", views.tst),
-    path("OGE_russian/", views.tst),
-    path("EGE_russian/", views.tst),
-    path("OGE_informatics/", views.tst),
-    path("EGE_informatics/", views.tst),
-    path("OGE_physics/", views.tst),
-    path("EGE_physics/", views.tst),
-    path("OGE_biology/", views.tst),
-    path("EGE_biology/", views.tst),
-    path("OGE_chemistry/", views.tst),
-    path("EGE_chemistry/", views.tst),
-    path("OGE_history/", views.tst),
-    path("EGE_history/", views.tst),
-    path("OGE_social_studies/", views.tst),
-    path("EGE_social_studies/", views.tst),
-    path("OGE_literature/", views.tst),
-    path("EGE_literature/", views.tst),
-    path("OGE_english/", views.tst),
-    path("EGE_english/", views.tst),
-    path("OGE_geography/", views.tst),
-    path("EGE_geography/", views.tst),
+    path("OGE_math/", subject_views.tst),
+    path("EGE_math/", subject_views.tst),
+    path("OGE_russian/", subject_views.tst),
+    path("EGE_russian/", subject_views.tst),
+    path("OGE_informatics/", subject_views.tst),
+    path("EGE_informatics/", subject_views.tst),
+    path("OGE_physics/", subject_views.tst),
+    path("EGE_physics/", subject_views.tst),
+    path("OGE_biology/", subject_views.tst),
+    path("EGE_biology/", subject_views.tst),
+    path("OGE_chemistry/", subject_views.tst),
+    path("EGE_chemistry/", subject_views.tst),
+    path("OGE_history/", subject_views.tst),
+    path("EGE_history/", subject_views.tst),
+    path("OGE_social_studies/", subject_views.tst),
+    path("EGE_social_studies/", subject_views.tst),
+    path("OGE_literature/", subject_views.tst),
+    path("EGE_literature/", subject_views.tst),
+    path("OGE_english/", subject_views.tst),
+    path("EGE_english/", subject_views.tst),
+    path("OGE_geography/", subject_views.tst),
+    path("EGE_geography/", subject_views.tst),
 
 
     #ссылки регистрации
