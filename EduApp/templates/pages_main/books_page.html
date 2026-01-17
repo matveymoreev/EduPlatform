@@ -1,18 +1,18 @@
 {% extends "base/base.html" %}
 
 {% block contentMain %}
+{% load static %}
     <!-- Герой-секция -->
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="hero-title">Учебники для школьников</h1>
-                    <p class="hero-subtitle">Бесплатные учебники по всем предметам для 8-11 классов. Читайте онлайн или скачивайте в PDF.</p>
-                    <a href="#8-class" class="btn btn-primary me-2">Смотреть учебники</a>
-                    <a href="https://lib.uchebnik.academy/" target="_blank" class="btn btn-outline-primary">Открыть библиотеку</a>
+                    <p class="hero-subtitle link_books">Бесплатные учебники по всем предметам для 8-11 классов. Читайте онлайн или скачивайте в PDF.</p>
+                    <a href="https://lib.uchebnik.academy/" target="_blank" class="btn btn-outline-dark ">Открыть библиотеку</a>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="https://cdn.pixabay.com/photo/2017/09/16/19/21/board-2757027_1280.png" alt="Образование" class="img-fluid" style="max-height: 300px;">
+                    <img src="{% static 'image/book.jpg' %}" alt="Образование" class="img-fluid" style="max-height: 300px;">
                 </div>
             </div>
         </div>
