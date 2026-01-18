@@ -7,7 +7,7 @@ document.querySelectorAll('.task-card-header').forEach(header => {
 });
 
 // Автоматически открываем первое задание при загрузке
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     // Первое задание уже открыто по умолчанию (класс "show")
     const firstArrow = document.querySelector('#task1-detail').previousElementSibling.querySelector('.arrow-icon');
     firstArrow.classList.add('rotated');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Плавная прокрутка к якорям
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') !== '#') {
+        if (this.getAttribute('href').startsWith('#') && this.getAttribute('href') != '#') {
             e.preventDefault();
 
             const targetId = this.getAttribute('href');
