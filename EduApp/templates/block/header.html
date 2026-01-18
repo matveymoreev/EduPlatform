@@ -47,8 +47,8 @@
             </form>
 
             <div class="d-flex">
-                {% if logIn %}
-                    <button type="button" class="btn btn-light">Аккаунт</button>
+                {% if request.user.is_authenticated %}
+                    <button onclick="window.location.href = '/acc'" type="button" class="btn btn-light">Аккаунт</button>
                 {% else %}
                     <a href="/login" class="btn btn-primary me-2">Войти</a>
                     <a href="/reg" class="btn btn-primary">Регистрация</a>

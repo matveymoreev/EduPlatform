@@ -16,15 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from EduApp.views_funcs import subject_views
-from EduApp.views_funcs import views
-
-
-
-
+from EduApp.views_funcs import subject_views, views, auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("/", views.main),
     path("", views.main),
     path("OGE_subjects/", views.oge_subjects),
     path("acc/", views.acc),
@@ -32,8 +28,6 @@ urlpatterns = [
     re_path(r"^books", views.books),
     path("tst/", subject_views.tst),
     path("number/", views.number),
-
-
 
     path("OGE_math/", subject_views.tst),
     path("EGE_math/", subject_views.tst),
@@ -58,12 +52,10 @@ urlpatterns = [
     path("OGE_geography/", subject_views.tst),
     path("EGE_geography/", subject_views.tst),
 
-
     #ссылки регистрации
-    path('login/', views.login_page),
-    path('accounts/login/', views.login_page),
-    path('logout/', views.logout_page),
-    path('reg/', views.auth_page),
-
+    path('login/', auth_views.login_page),
+    path('accounts/login/', auth_views.login_page),
+    path('logout/', auth_views.logout_page),
+    path('reg/', auth_views.auth_page),
 
 ]

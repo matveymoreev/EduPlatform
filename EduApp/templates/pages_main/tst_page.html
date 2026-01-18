@@ -1,5 +1,8 @@
 {% extends "base/base.html" %}
 
+<!-- подключение статических файлов -->
+{% load static %}
+
 {% block contentMain %}
 
     <!-- Герой-секция -->
@@ -49,12 +52,12 @@
 
             <h2 class="section-title">Разбор заданий {{exam}} по {{object2}}</h2>
 
-            <!-- Задание 1 -->
+            <!-- Задание 1
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task1-detail" aria-expanded="true">
                     <div class="d-flex align-items-center">
                         <span class="task-number">1</span>
-                        <span class="task-title">{{topic}}</span>
+                        <span class="task-title">----</span>
                     </div>
                     <i class="bi bi-chevron-down arrow-icon"></i>
                 </div>
@@ -94,54 +97,63 @@
                     </div>
                 </div>
             </div>
+            -->
 
-            <!-- Задание 2 -->
+            {% for item in tasks %}
+                <!-- Задание 2 -->
             <div class="task-card">
-                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task2-detail">
+                <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task{{item.id}}-detail">
                     <div class="d-flex align-items-center">
-                        <span class="task-number">2</span>
-                        <span class="task-title">Действия с десятичными дробями</span>
+                        <span class="task-number">{{item.id}}</span>
+                        <span class="task-title">{{item.topic}}</span>
                     </div>
                     <i class="bi bi-chevron-down arrow-icon"></i>
                 </div>
-                <div class="task-card-body collapse" id="task2-detail">
+                <div class="task-card-body collapse" id="task{{item.id}}-detail">
                     <div class="task-content">
-                        <p>{{task_topic}}</p>
+                        <p>{{item.task_topic}}</p>
 
                         <div class="task-example">
                             <div class="example-title">Пример задания:</div>
-                            <p>{{task}} <strong>{{example}}</strong></p>
+                            <p>{{item.task}} <strong>{{item.example}}</strong></p>
                         </div>
 
                         <div class="task-details">
                             <div class="detail-item">
                                 <span class="detail-label">Тип задания:</span>
-                                <span>{{task_type}}</span>
+                                <span>{{item.task_type}}</span>
                             </div>
                             <div class="detail-item">
-                                <span class="detail-label">Уровень сложности:</span>
-                                <span><span class="badge bg-success">{{difficulty}}</span></span>
+                                <span class="detail-label">Уровень сложности: </span>
+                                {% if item.difficulty == "Высокий" %}
+                                    <span><span class="badge bg-danger">{{item.difficulty}}</span></span>
+                                {% elif item.difficulty == "Повышенный" %}
+                                    <span><span class="badge bg-warning">{{item.difficulty}}</span></span>
+                                {% else %}
+                                    <span><span class="badge bg-success">{{item.difficulty}}</span></span>
+                                {% endif %}
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Макс. балл:</span>
-                                <span>{{mark}} балл</span>
+                                <span>{{item.mark}} балл</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Раздел:</span>
-                                <span>{{subject}}</span>
+                                <span>{{item.subject}}</span>
                             </div>
                         </div>
 
                         <div class="clearfix">
-                            <a href="task2-detail.html" class="btn btn-open-task">
+                            <a href="task{{item.id}}-detail.html" class="btn btn-open-task">
                                 <i class="bi bi-box-arrow-up-right me-2"></i>Открыть задание
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
-            <!-- Задание 3 -->
+            <!--
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task3-detail">
                     <div class="d-flex align-items-center">
@@ -187,7 +199,6 @@
                 </div>
             </div>
 
-            <!-- Задание 4 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task4-detail">
                     <div class="d-flex align-items-center">
@@ -233,7 +244,6 @@
                 </div>
             </div>
 
-            <!-- Задание 5 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task5-detail">
                     <div class="d-flex align-items-center">
@@ -279,7 +289,6 @@
                 </div>
             </div>
 
-            <!-- Задание 6 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task6-detail">
                     <div class="d-flex align-items-center">
@@ -325,7 +334,7 @@
                 </div>
             </div>
 
-            <!-- Задание 7 -->
+
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task7-detail">
                     <div class="d-flex align-items-center">
@@ -371,7 +380,6 @@
                 </div>
             </div>
 
-            <!-- Задание 8 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task8-detail">
                     <div class="d-flex align-items-center">
@@ -417,7 +425,6 @@
                 </div>
             </div>
 
-            <!-- Задание 9 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task9-detail">
                     <div class="d-flex align-items-center">
@@ -463,7 +470,6 @@
                 </div>
             </div>
 
-            <!-- Задание 10 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task10-detail">
                     <div class="d-flex align-items-center">
@@ -509,7 +515,6 @@
                 </div>
             </div>
 
-            <!-- Задание 11 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task11-detail">
                     <div class="d-flex align-items-center">
@@ -555,7 +560,6 @@
                 </div>
             </div>
 
-            <!-- Задание 12 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task12-detail">
                     <div class="d-flex align-items-center">
@@ -601,7 +605,6 @@
                 </div>
             </div>
 
-            <!-- Задание 13 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task13-detail">
                     <div class="d-flex align-items-center">
@@ -647,7 +650,6 @@
                 </div>
             </div>
 
-            <!-- Задание 14 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task14-detail">
                     <div class="d-flex align-items-center">
@@ -693,7 +695,6 @@
                 </div>
             </div>
 
-            <!-- Задание 15 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task15-detail">
                     <div class="d-flex align-items-center">
@@ -739,7 +740,6 @@
                 </div>
             </div>
 
-            <!-- Задание 16 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task16-detail">
                     <div class="d-flex align-items-center">
@@ -785,7 +785,6 @@
                 </div>
             </div>
 
-            <!-- Задание 17 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task17-detail">
                     <div class="d-flex align-items-center">
@@ -831,7 +830,6 @@
                 </div>
             </div>
 
-            <!-- Задание 18 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task18-detail">
                     <div class="d-flex align-items-center">
@@ -877,7 +875,6 @@
                 </div>
             </div>
 
-            <!-- Задание 19 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task19-detail">
                     <div class="d-flex align-items-center">
@@ -923,7 +920,6 @@
                 </div>
             </div>
 
-            <!-- Задание 20 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task20-detail">
                     <div class="d-flex align-items-center">
@@ -969,7 +965,6 @@
                 </div>
             </div>
 
-            <!-- Задание 21 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task21-detail">
                     <div class="d-flex align-items-center">
@@ -1015,7 +1010,6 @@
                 </div>
             </div>
 
-            <!-- Задание 22 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task22-detail">
                     <div class="d-flex align-items-center">
@@ -1061,7 +1055,6 @@
                 </div>
             </div>
 
-            <!-- Задание 23 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task23-detail">
                     <div class="d-flex align-items-center">
@@ -1107,7 +1100,6 @@
                 </div>
             </div>
 
-            <!-- Задание 24 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task24-detail">
                     <div class="d-flex align-items-center">
@@ -1153,7 +1145,6 @@
                 </div>
             </div>
 
-            <!-- Задание 25 -->
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task25-detail">
                     <div class="d-flex align-items-center">
@@ -1198,6 +1189,7 @@
                     </div>
                 </div>
             </div>
+            -->
 
             <!-- Информация о количестве заданий -->
             <div class="alert alert-info mt-4">
@@ -1239,3 +1231,7 @@
 
 
 {% endblock contentMain %}
+
+{% block contentScript %}
+    <script src="{% static 'js/tst_page.js' %}"></script>
+{% endblock contentScript %}

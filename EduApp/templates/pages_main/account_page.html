@@ -1,5 +1,8 @@
 {% extends "base/base.html" %}
 
+<!-- подключение статических файлов -->
+{% load static %}
+
 {% block contentMain %}
 <!-- Основной контент -->
 <div class="container py-4">
@@ -31,7 +34,7 @@
 
                     <div class="mt-4">
                         <button class="btn btn-primary w-100 mb-2"><i class="bi bi-pencil-square me-2"></i>Редактировать профиль</button>
-                        <button class="btn btn-outline-secondary w-100"><i class="bi bi-box-arrow-right me-2"></i>Выйти</button>
+                        <a href="/logout/"><button class="btn btn-outline-secondary w-100"><i class="bi bi-box-arrow-right me-2"></i>Выйти</button></a>
                     </div>
                 </div>
             </div>
@@ -231,3 +234,8 @@
 </div>
 
 {% endblock contentMain %}
+
+
+{% block contentScript %}
+    <script src="{% static 'js/account_page.js' %}"></script>
+{% endblock contentScript %}

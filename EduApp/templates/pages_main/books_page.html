@@ -1,7 +1,10 @@
 {% extends "base/base.html" %}
 
 {% block contentMain %}
+
+<!-- подключение статических файлов -->
 {% load static %}
+
     <!-- Герой-секция -->
     <section class="hero-section">
         <div class="container">
@@ -446,3 +449,7 @@
 
 
 {% endblock contentMain %}
+
+{% block contentScript %}
+    <script src="{% static 'js/books_page.js' %}"></script>
+{% endblock contentScript %}

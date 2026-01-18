@@ -1,8 +1,9 @@
 {% extends "base/base.html" %}
 
+<!-- подключение статических файлов -->
+{% load static %}
+
 {% block contentMain %}
-
-
     <!-- Контейнер с прогрессом -->
     <div class="container mt-4">
         <div class="progress-container">
@@ -105,9 +106,9 @@
         </div>
     </footer>
 
+{% endblock contentMain %}
 
 
-
-
-
+{% block contentMain %}
+    <script src="{% static 'js/number_page.js' %}"></script>
 {% endblock contentMain %}

@@ -1,16 +1,16 @@
 
 // Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
+document.getElementById('login-form').addEventListener('submit', function(event) {
     // Обработка формы входа
     const loginForm = document.getElementById('login-form');
     const errorMessage = document.getElementById('error-message');
     const errorText = document.getElementById('error-text');
 
     loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         // Получаем значения полей
-        const name = document.getElementById('name').value.trim();
+        // const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
 
@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let isValid = true;
         let errorMsg = '';
 
-        if (!name) {
-            isValid = false;
-            errorMsg = 'Пожалуйста, введите имя и фамилию';
-        } else if (!email) {
+//        if (!name) {
+//            isValid = false;
+//            errorMsg = 'Пожалуйста, введите имя и фамилию';
+//        } else
+        if (!email) {
             isValid = false;
             errorMsg = 'Пожалуйста, введите email';
         } else if (!isValidEmail(email)) {
@@ -36,17 +37,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (!isValid) {
-            errorText.textContent = errorMsg;
+            // errorText.textContent = errorMsg;
             errorMessage.style.display = 'block';
             return;
         }
 
         // Скрываем сообщение об ошибке, если валидация прошла
-        errorMessage.style.display = 'none';
+        // errorMessage.style.display = 'none';
 
         // В реальном приложении здесь был бы запрос к серверу
         // Для демонстрации просто показываем сообщение об успехе
-        alert(`Добро пожаловать, ${name}! Вход выполнен успешно.`);
+        // alert(`Добро пожаловать! Вход выполнен успешно.`);
 
         // Здесь обычно происходит перенаправление на защищенную страницу
         // window.location.href = '/dashboard.html';
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработчик для ссылки "Забыли пароль?"
     document.querySelector('.forgot-password').addEventListener('click', function(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const email = document.getElementById('email').value.trim();
 
         if (email && isValidEmail(email)) {
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Обработчик для ссылки "Зарегистрироваться"
     document.querySelector('.login-footer a').addEventListener('click', function(e) {
-        e.preventDefault();
-        alert('Переход на страницу регистрации. В реальном приложении здесь была бы ссылка на страницу регистрации.');
+//        e.preventDefault();
+//        alert('Переход на страницу регистрации. В реальном приложении здесь была бы ссылка на страницу регистрации.');
     });
 });

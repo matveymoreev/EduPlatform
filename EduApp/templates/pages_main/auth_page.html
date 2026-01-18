@@ -1,5 +1,8 @@
 {% extends "base/base.html" %}
 
+<!-- подключение статических файлов -->
+{% load static %}
+
 {% block contentMain %}
 
 
@@ -116,12 +119,12 @@
                     <div class="validation-feedback" id="termsFeedback"></div>
                 </div>
 
-                <button type="submit" class="btn btn-register">
+                <button type="submit" class="btn btn-register" id="auth_btn">
                     <i class="bi bi-person-plus me-2"></i> Зарегистрироваться
                 </button>
 
                 <div class="login-link">
-                    Уже есть аккаунт? <a href="">Войти</a>
+                    Уже есть аккаунт? <a href="/login">Войти</a>
                 </div>
             </form>
         </div>
@@ -174,6 +177,8 @@
         </div>
     </div>
 
-
-
 {% endblock contentMain %}
+
+{% block contentScript %}
+    <script src="{% static 'js/auth_page.js' %}"></script>
+{% endblock contentScript %}
