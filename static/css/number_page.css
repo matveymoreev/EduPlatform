@@ -62,7 +62,7 @@ body {
 .task-number {
     font-size: 1.8rem;
     font-weight: 800;
-    color: var(--primary-color);
+    /*color: var(--primary-color);*/
 }
 
 .task-type {
@@ -292,3 +292,4 @@ footer {
     color: #6c757d;
     margin-top: 5px;
 }
+

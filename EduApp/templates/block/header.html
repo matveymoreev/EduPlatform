@@ -1,8 +1,10 @@
+{% load static %}
+
 <!-- Навигационная панель -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/">
-            <i class="bi bi-mortarboard fs-4 me-2 text-primary"></i>
+            <img src = "{% static 'image/faf_icon.png' %}" class="bi bi-mortarboard fs-4 me-2 text-primary">
             <span>EduPlatform</span>
         </a>
 
@@ -28,26 +30,27 @@
 
                 <!-- Дополнительные ссылки -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/OGE_subjects">ОГЭ</a>
+                    <a class="nav-link white_link" href="/OGE_subjects">ОГЭ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/EGE_subjects">ЕГЭ</a>
+                    <a class="nav-link white_link" href="/EGE_subjects">ЕГЭ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/books">Учебники</a>
+                    <a class="white_link nav-link " href="/books">Учебники</a>
                 </li>
+            </ul>
             </ul>
 
             <form class="d-flex me-3">
                 <input class="form-control me-2" type="search" placeholder="Поиск курсов..." aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Найти</button>
+                <button class="btn btn-primary" type="submit">Найти</button>
             </form>
 
             <div class="d-flex">
                 {% if logIn %}
                     <button type="button" class="btn btn-light">Аккаунт</button>
                 {% else %}
-                    <a href="/login" class="btn btn-outline-primary me-2">Войти</a>
+                    <a href="/login" class="btn btn-primary me-2">Войти</a>
                     <a href="/reg" class="btn btn-primary">Регистрация</a>
                 {% endif %}
             </div>
