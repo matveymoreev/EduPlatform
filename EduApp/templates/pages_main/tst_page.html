@@ -53,7 +53,7 @@
             <div class="task-card">
                 <div class="task-card-header" data-bs-toggle="collapse" data-bs-target="#task1-detail" aria-expanded="true">
                     <div class="d-flex align-items-center">
-                        <span class="task-number ">1</span>
+                        <span class="task-number">1</span>
                         <span class="task-title">{{topic}}</span>
                     </div>
                     <i class="bi bi-chevron-down arrow-icon"></i>
@@ -1204,7 +1204,7 @@
                 <div class="d-flex align-items-center">
                     <i class="bi bi-info-circle-fill me-3 fs-4"></i>
                     <div>
-                        <h5 class="mb-1">Все задания ОГЭ по математике: 25</h5>
+                        <h5 class="mb-1">Все задания {{exam}} по математике: 25</h5>
                         <p class="mb-0">Задания 1-19 — базового уровня сложности (1 балл каждое). Задания 20-25 — повышенного уровня сложности с развернутым ответом (2-4 балла). Максимальный балл — 31.</p>
                     </div>
                 </div>
@@ -1225,29 +1225,14 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <h5 class="mb-3">ОГЭ 2025 — Математика</h5>
-                    <p class="text-muted">Полный разбор всех 25 заданий с примерами решений и методическими рекомендациями. Все материалы соответствуют спецификации ФИПИ 2025 года.</p>
+                    <div class="col-md-20 .ms-auto">
+                    <h5 class="mb-3">ОГЭ 2025 — {{object}}</h5>
+                    <p class="text-muted">Полный разбор всех {{numders}} заданий с примерами решений и методическими рекомендациями. Все материалы соответствуют спецификации ФИПИ 2025 года.</p>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="mb-3">Разделы математики</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-muted text-decoration-none">Алгебра (1-14 задания)</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Геометрия (15-19 задания)</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Реальная математика (20-25 задания)</a></li>
-                    </ul>
-                </div>
 
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h6 class="mb-3">Дополнительно</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-muted text-decoration-none">Тренировочные тесты</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Критерии оценивания</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Типичные ошибки</a></li>
-                        <li><a href="#" class="text-muted text-decoration-none">Методические рекомендации</a></li>
-                    </ul>
-                </div>
+
+
             </div>
         </div>
     </footer>
