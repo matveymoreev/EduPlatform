@@ -15,8 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
-from EduApp.views_funcs import subject_views, views, auth_views
+from django.urls import path, re_path, include
+from EduApp.views_funcs import subject_views, views, auth_views, number_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,30 +27,75 @@ urlpatterns = [
     path("EGE_subjects/", views.ege_subjects),
     re_path(r"^books", views.books),
     path("tst/", subject_views.tst),
-    path("number/", views.number),
+
+    path("number/", number_views.number),
 
     path("OGE_math/", subject_views.tst),
+    path("OGE_math/number/", number_views.number),
+
     path("EGE_math/", subject_views.tst),
+    path("EGE_math/number/", number_views.number),
+
     path("OGE_russian/", subject_views.tst),
+    path("OGE_russian/number/", number_views.number),
+
     path("EGE_russian/", subject_views.tst),
+    path("EGE_russian/number/", number_views.number),
+
     path("OGE_informatics/", subject_views.tst),
+    path("OGE_informatics/number/", number_views.number),
+
     path("EGE_informatics/", subject_views.tst),
+    path("EGE_informatics/number/", number_views.number),
+
     path("OGE_physics/", subject_views.tst),
+    path("OGE_physics/number/", number_views.number),
+
     path("EGE_physics/", subject_views.tst),
+    path("EGE_physics/number/", number_views.number),
+
     path("OGE_biology/", subject_views.tst),
+    path("OGE_biology/number/", number_views.number),
+
     path("EGE_biology/", subject_views.tst),
+    path("EGE_biology/number/", number_views.number),
+
     path("OGE_chemistry/", subject_views.tst),
+    path("OGE_chemistry/number/", number_views.number),
+
     path("EGE_chemistry/", subject_views.tst),
+    path("EGE_chemistry/number/", number_views.number),
+
     path("OGE_history/", subject_views.tst),
+    path("OGE_history/number/", number_views.number),
+
     path("EGE_history/", subject_views.tst),
+    path("EGE_history/number/", number_views.number),
+
     path("OGE_social_studies/", subject_views.tst),
+    path("OGE_social_studies/number/", number_views.number),
+
     path("EGE_social_studies/", subject_views.tst),
+    path("EGE_social_studies/number/", number_views.number),
+
     path("OGE_literature/", subject_views.tst),
+    path("OGE_literature/number/", number_views.number),
+
     path("EGE_literature/", subject_views.tst),
+    path("EGE_literature/number/", number_views.number),
+
     path("OGE_english/", subject_views.tst),
+    path("OGE_english/number/", number_views.number),
+
     path("EGE_english/", subject_views.tst),
+    path("EGE_english/number/", number_views.number),
+
     path("OGE_geography/", subject_views.tst),
+    path("OGE_geography/number/", number_views.number),
+
     path("EGE_geography/", subject_views.tst),
+    path("EGE_geography/number/", number_views.number),
+    
 
     #ссылки регистрации
     path('login/', auth_views.login_page),

@@ -17,8 +17,6 @@ class User(models.Model):
     activity = models.IntegerField()
 
 
-
-
 # страница OGE/EGE_...(tst_page.html)
 class Task_list_math(models.Model):
     # тема задания(Действия с десятичными дробями)
