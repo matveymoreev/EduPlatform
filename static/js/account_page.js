@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const lastName = lastNameInput.value.trim();
 
         if (firstName || lastName) {
-            userFullName.textContent = `${firstName} ${lastName}`.trim();
+            //userFullName.textContent = `${firstName} ${lastName}`.trim();
             userFullName.classList.add('updating');
             setTimeout(() => userFullName.classList.remove('updating'), 500);
         } else {
@@ -53,40 +53,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Функция обновления статистики
     function updateStats() {
-        const courses = parseInt(inputCourses.value) || 0;
-        const hours = parseInt(inputHours.value) || 0;
-        const progress = parseInt(inputProgress.value) || 0;
-        const activity = parseInt(inputActivity.value) || 0;
+//        const courses = parseInt(inputCourses.value) || 0;
+//        const hours = parseInt(inputHours.value) || 0;
+//        const progress = parseInt(inputProgress.value) || 0;
+//        const activity = parseInt(inputActivity.value) || 0;
 
         // Обновляем цифры
-        coursesCount.textContent = courses;
-        hoursCount.textContent = hours;
-        progressPercent.textContent = `${progress}%`;
+        //coursesCount.textContent = courses;
+        //hoursCount.textContent = hours;
+        //progressPercent.textContent = `${progress}%`;
 
         // Обновляем активность
-        const hoursActivity = Math.floor(activity / 60);
-        const minutesActivity = activity % 60;
+        //const hoursActivity = Math.floor(activity / 60);
+        //const minutesActivity = activity % 60;
 
-        if (activity > 0) {
-            if (hoursActivity > 0) {
-                todayActivity.textContent = `${hoursActivity} час ${minutesActivity} минут обучения`;
-            } else {
-                todayActivity.textContent = `${minutesActivity} минут обучения`;
-            }
-
-            // Рассчитываем прогресс-бар (максимум 8 часов = 480 минут)
-            const activityPercent = Math.min((activity / 480) * 100, 100);
-            activityBar.style.width = `${activityPercent}%`;
-        } else {
-            todayActivity.textContent = 'Активность не указана';
-            activityBar.style.width = '0%';
-        }
-
-        // Анимация обновления
-        [coursesCount, hoursCount, progressPercent].forEach(el => {
-            el.classList.add('updating');
-            setTimeout(() => el.classList.remove('updating'), 500);
-        });
+//        if (activity > 0) {
+//            if (hoursActivity > 0) {
+//                todayActivity.textContent = `${hoursActivity} час ${minutesActivity} минут обучения`;
+//            } else {
+//                todayActivity.textContent = `${minutesActivity} минут обучения`;
+//            }
+//
+//            // Рассчитываем прогресс-бар (максимум 8 часов = 480 минут)
+//            const activityPercent = Math.min((activity / 480) * 100, 100);
+//            activityBar.style.width = `${activityPercent}%`;
+//        } else {
+//            todayActivity.textContent = 'Активность не указана';
+//            activityBar.style.width = '0%';
+//        }
+//
+//        // Анимация обновления
+//        [coursesCount, hoursCount, progressPercent].forEach(el => {
+//            el.classList.add('updating');
+//            setTimeout(() => el.classList.remove('updating'), 500);
+//        });
     }
 
     // Слушатели событий для имени и фамилии
